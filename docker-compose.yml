@@ -1,0 +1,10 @@
+services:
+  db:
+    image: mysql # ここを :latest に変更、または単に mysql でもOK
+    container_name: jyunko_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: jyunko_db
+      TZ: Asia/Tokyo
+    ports:
+      - "3307:3306"
