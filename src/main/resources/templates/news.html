@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>お知らせ一覧</title>
+<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+		crossorigin="anonymous" />
+<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+</head>
+<body>
+	<h1>お知らせ一覧</h1>
+	<div class="container text-center">
+		<section class="result">
+			<h1>ニュース</h1>
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div  th:each="item : ${newsList}" class="col">
+					<div class="card h-100">
+						<img src="images/battle_result.jpeg" class="card-img-top" alt="ニュース写真" />
+						<div class="card-body">
+							<h5 th:text="${item.title}" class="card-title">対 ○○大学</h5>
+							<p th:text="${item.content}" class="card-text"></p>
+						</div>
+						<div class="card-footer">
+							<small th:text="${item.postedDate}"class="text-body-secondary">
+								Last updated 3 minsago</small>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+		xintegrity="sha384-I7E8VVD/ismYTF4hNIPjVpZVfJzbu6uRG9Qd8V0k+PzM6w/fAdFwJt"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+		xintegrity="sha384-0pUGZvbkmXulzFGkE+QxVjCjRkXoWpVQ/SE9FwTjJgCp/3xL/K+f/E/J/Q/R/W/Y/Z/X/A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z/a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z/"
+		crossorigin="anonymous"></script>
+</body>
+</html>
