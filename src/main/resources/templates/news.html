@@ -20,7 +20,7 @@
 			<div class="row row-cols-1 row-cols-md-3 g-4">
 				<div  th:each="item : ${newsList}" class="col">
 					<div class="card h-100">
-						<img src="images/battle_result.jpeg" class="card-img-top" alt="ニュース写真" />
+						<img th:if=${item.photo} th:src="@{${item.photo}}" class="card-img-top" alt="ニュース写真" />
 						<div class="card-body">
 							<h5 th:text="${item.title}" class="card-title">対 ○○大学</h5>
 							<p th:text="${item.content}" class="card-text"></p>
