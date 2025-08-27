@@ -17,8 +17,8 @@ public class MemberController {
 
 	@GetMapping("/members")
 	public String getMembers(Model model) {
-		List<Member> members = memberService.findAll();
-		model.addAttribute("members", members);
+		List<Member> memberList = memberService.findAll();
+		model.addAttribute("memberList", memberList);
 		return "members";
 	}
 
