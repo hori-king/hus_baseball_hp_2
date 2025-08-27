@@ -9,8 +9,16 @@
 			<div class="col-lg-4 col-md-6 mb-4" th:each="member : ${memberList}">
 				
 				<div class="card shadow-sm">
-					<img th:if="${member.photo}" src="@{${member.photo}}" class="card-img-top" alt="部員写真">
-					<div class="card-body d-flex flex-column"></div>
+					<img th:if="${member.photo}" th:src="@{${member.photo}}" class="card-img-top" alt="部員写真">
+					<div class="card-body d-flex flex-column">
+						<ul class="list-group list-group-flush mb-3">
+							<li class="list-group-item"  th:text="'名前:' + ${member.name}">名前</li>
+							<li class="list-group-item" th:text="'学年:' + ${member.grade}">学年</li>
+							<li class="list-group-item" th:text="'出身校:' + ${member.almaMater}">出身校</li>
+							<li class="list-group-item" th:text="'ポジション:' + ${member.position}">ポジション</li>
+							<li class="list-group-item" th:text="${member.ambition}">意気込み</li>
+						</ul>
+					</div>
 				</div>
 				
 			</div>
