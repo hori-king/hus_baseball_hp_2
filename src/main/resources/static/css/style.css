@@ -2,3 +2,14 @@
 body{
 	padding-top: 60px;
 }
+
+.footer_bg{
+	
+	position: relative;
+	background-image: linear-gradient(
+		rgba(0, 0, 0, 0.6), 
+		rgba(0, 0, 0, 0.6)),
+		 url(/images/footer_bg.jpg);
+	background-size: cover;
+	background-position: center;
+}
