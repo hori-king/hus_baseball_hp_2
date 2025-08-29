@@ -3,30 +3,30 @@
 
 <head th:replace="~{fragments/head :: common_head('お知らせ一覧')}"></head>
 
-<body class="d-flex flex-column min-vh-100">
+<body>
 	<div th:replace="~{fragments/header :: common_header}"></div>
 	
-	<main class="flex-shrink-0">
-			<div class="container text-center">
-				<section>
-					<h1>お知らせ一覧</h1>
-					<div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
-						<div  th:each="item : ${newsList}" class="col">
-							<div class="card h-100">
-								<img th:if="${item.photo}" th:src="@{${item.photo}}" class="card-img-top" alt="ニュース写真" />
-								<div class="card-body">
-									<h5 th:text="${item.title}" class="card-title">ニュース</h5>
-									<p th:text="${item.content}" class="card-text"></p>
-								</div>
-								<div class="card-footer">
-									<small th:text="${item.postedDate}" class="text-body-secondary">
-										Last updated 3 minsago</small>
-								</div>
+	<main class="mt-5">
+		<div class="container text-center">
+			<section>
+				<h1>お知らせ一覧</h1>
+				<div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+					<div  th:each="item : ${newsList}" class="col">
+						<div class="card h-100">
+							<img th:if="${item.photo}" th:src="@{${item.photo}}" class="card-img-top" alt="ニュース写真" />
+							<div class="card-body">
+								<h5 th:text="${item.title}" class="card-title">ニュース</h5>
+								<p th:text="${item.content}" class="card-text"></p>
+							</div>
+							<div class="card-footer">
+								<small th:text="${#temporals.format(item.postedDate, 'yyyy-MM-dd')}" class="text-body-secondary">
+									Last updated 3 minsago</small>
 							</div>
 						</div>
 					</div>
-				</section>
-			</div>
+				</div>
+			</section>
+		</div>
 	</main>
 	
 	<div th:replace="~{fragments/footer :: common_footer}" class="mt-auto"></div>
