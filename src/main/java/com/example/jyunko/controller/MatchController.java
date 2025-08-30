@@ -17,8 +17,8 @@ public class MatchController {
 
 	@GetMapping("/matches")
 	public String getAllMatches(Model model) {
-		List<Match> matches = matchService.findAll();
-		model.addAttribute("matches", matches);
+		List<Match> matchList = matchService.findAll();
+		model.addAttribute("matchList", matchList);
 		return "matches";
 	}
 }
