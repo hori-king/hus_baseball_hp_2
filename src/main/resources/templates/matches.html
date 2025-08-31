@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<head th:replace="~{fragments/head :: common_head('試合結果')}"></head>
+
+<body>
+	<div th:replace="~{fragments/header :: common_header}"></div>
+	
+	<main>
+		<div class="container mt-4">
+			<h1 class="text-center mb-4">試合結果</h1>
+			<div class="row">
+				
+				<div class="col-lg-4 col-md-6 mb-4" th:each="match : ${matchList}">
+					<img th:if="${match.photo}" th:src="@{${match.photo}}" class="card-img-top" alt="試合写真">
+					<div class="card-body d-flex flex-column">
+						<ul class="list-group list-gruop-flush mb-3">
+							<li class="list-group-item fs-5" th:text="'対戦校: '+${match.opponent}"></li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</main>
+	
+	<div th:replace="~{fragments/footer :: common_footer}"></div>
+</body>
+</html>
