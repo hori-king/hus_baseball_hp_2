@@ -1,6 +1,6 @@
 @charset "UTF-8";
 html, body {
-    height: 100%;
+	height: 100%;
 }
 
 body{
@@ -13,9 +13,9 @@ main{
 
 .footer_bg{
 	background-image: linear-gradient(
-		rgba(0, 0, 0, 0.6), 
+		rgba(0, 0, 0, 0.6),
 		rgba(0, 0, 0, 0.6)),
-		 url(/images/footer_bg.jpg);
+		url(/images/footer_bg.jpg);
 	background-size: cover;
 	background-position: center;
 }
