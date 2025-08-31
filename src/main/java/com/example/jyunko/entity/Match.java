@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "match")
+@Table(name = "matches")
 @Data
 public class Match {
 	@Id
