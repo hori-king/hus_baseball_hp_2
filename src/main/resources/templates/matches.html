@@ -7,23 +7,47 @@
 	<div th:replace="~{fragments/header :: common_header}"></div>
 	
 	<main>
-		<div class="container mt-4">
+		<div class="container mt-4 mb-5">
 			<h1 class="text-center mb-4">試合結果</h1>
-			<div class="row">
-				
-				<div class="col-lg-4 col-md-6 mb-4" th:each="match : ${matchList}">
-					<img th:if="${match.photo}" th:src="@{${match.photo}}" class="card-img-top" alt="試合写真">
-					<div class="card-body d-flex flex-column">
-						<ul class="list-group list-gruop-flush mb-3">
-							<li class="list-group-item fs-5" th:text="'対戦校: '+${match.opponent}"></li>
-						</ul>
+			<div th:if="${matchList.isEmpty()}" class="alert alert-info" role="alert">
+				まだ試合結果が登録されていません。
+			</div>
+			
+			<div th:unless="${matchList.isEmpty()}" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+				<div th:each="match : ${matchList}" class="col">
+					<div class="card shadow-sm h-100">
+						<img th:if="${match.photo}" th:src="@{${match.photo}}" class="card-img-top" alt="試合写真">
+						
+						<div class="card-header text-center">
+							<span th:text="${#temporals.format(match.matchDate, 'yyyy年MM月dd日')}"></span>
+						</div>
+						
+						<div class="card-body">
+							<h3 class="card-title text-center" th:text="'対戦相手： '+${match.opponent}"></h3>
+							<div class="d-flex justify-content-center align-items-center fs-3">
+								<span th:text="${match.ourScore}"></span>
+								<span class="mx-2">-</span>
+								<span th:text="${match.opponentScore}"></span>
+							</div>
+							<p class="text-center fs-4 fw-bold"
+								th:text="${match.result}"
+								th:classappend="${match.result == '勝利'} ? 'text-success' :
+									(${match.result == '敗北'} ? 'text-danger' : 'text-secondary')">
+							</p>
+							<p class="text-center" th:text="${match.venue}"></p>
+							
+						</div>
+						
 					</div>
 				</div>
+			</div>
 				
 			</div>
 		</div>
 	</main>
 	
 	<div th:replace="~{fragments/footer :: common_footer}"></div>
+	
+	<script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
