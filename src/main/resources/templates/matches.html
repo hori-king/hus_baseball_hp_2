@@ -18,10 +18,6 @@
 					<div class="card shadow-sm h-100">
 						<img th:if="${match.photo}" th:src="@{${match.photo}}" class="card-img-top" alt="試合写真">
 						
-						<div class="card-header text-center">
-							<span th:text="${#temporals.format(match.matchDate, 'yyyy年MM月dd日')}"></span>
-						</div>
-						
 						<div class="card-body">
 							<h3 class="card-title text-center" th:text="'対戦相手： '+${match.opponent}"></h3>
 							<div class="d-flex justify-content-center align-items-center fs-3">
@@ -35,7 +31,10 @@
 									(${match.result == '敗北'} ? 'text-danger' : 'text-secondary')">
 							</p>
 							<p class="text-center" th:text="${match.venue}"></p>
-							
+						</div>
+						
+						<div class="card-footer text-end">
+							<span th:text="${#temporals.format(match.matchDate, 'yyyy年MM月dd日')}"></span>
 						</div>
 						
 					</div>
