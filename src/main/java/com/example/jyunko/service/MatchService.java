@@ -16,4 +16,8 @@ public class MatchService {
 	public List<Match> findAll() {
 		return matchRepository.findAll();
 	}
+
+	public Match findById(Integer id) {
+		return matchRepository.findById(id).orElse(null);
+	}
 }
