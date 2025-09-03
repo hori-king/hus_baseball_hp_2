@@ -11,6 +11,17 @@ main{
 	min-height: calc(100vh - 160px);
 }
 
+/* カードにホバーしたときの効果 */
+.card-hover {
+	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* ホバー効果を滑らかにする */
+}
+
+.card-hover:hover {
+	transform: translateY(-5px); /* 少し上に浮き上がる */
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* 影を濃くする */
+	filter: brightness(0.9); /* 少し暗くする */
+}
+
 .footer_bg{
 	background-image: linear-gradient(
 		rgba(0, 0, 0, 0.6),
