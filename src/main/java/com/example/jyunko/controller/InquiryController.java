@@ -25,7 +25,7 @@ public class InquiryController {
 	@PostMapping("/inquiry")
 	public String saveInquiry(@ModelAttribute Inquiry inquiry, RedirectAttributes redirectAttributes) {
 		inquiryService.save(inquiry);
-		redirectAttributes.addFlashAttribute("successMessage", "ご質問いただきありがとうございます。");
+		redirectAttributes.addFlashAttribute("successMessage", "送信完了しました。");
 		return "redirect:/inquiry";
 	}
 }
