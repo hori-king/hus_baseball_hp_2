@@ -1,23 +1,23 @@
 package com.example.jyunko.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import com.example.jyunko.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	@Value("${ADMIN_USERNAME}")
-	private String username;
+	private final UserDetailsServiceImpl userDetailsServiceImpl;
 
-	@Value("${ADMIN_PASSWORD}")
-	private String password;
+	public SecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl) {
+		this.userDetailsServiceImpl = userDetailsServiceImpl;
+	}
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -27,7 +27,6 @@ public class SecurityConfig {
 				// お問い合わせフォームは誰でもアクセスできるように設定
 				.requestMatchers("/css/**", "/images/**").permitAll()
 				.requestMatchers("/", "/news/**", "/members/**", "/matches/**").permitAll()
-
 				// 上記以外のすべてのリクエストは、認証（ログイン）が必要
 				.requestMatchers("/inquiry").permitAll()
 				.anyRequest().authenticated()).formLogin(login -> login
@@ -40,18 +39,11 @@ public class SecurityConfig {
 				.logout(logout -> logout
 						// ログアウト成功後のリダイレクト先を指定
 						.logoutSuccessUrl("/"));
-
 		return http.build();
 	}
 
 	@Bean
-	public InMemoryUserDetailsManager userDetailsService() {
-		UserDetails user = User.withDefaultPasswordEncoder()
-				.username(username)
-				.password(password)
-				.roles("USER")
-				.build();
-		return new InMemoryUserDetailsManager(user);
-
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 }
