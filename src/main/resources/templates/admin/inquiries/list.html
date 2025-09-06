@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: common_head('お問い合わせ管理')}"></head>
+<body>
+	<div th:replace="~{fragments/header :: common_header}"></div>
+	
+	<main class="mt-5">
+		<div class="container">
+			<h1 class="mb-4">お問い合わせ一覧</h1>
+			<table class="table table-striped">
+				<thead>
+					<th scope="col">氏名</th>
+					<th scope="col">ID</th>
+					<th scope="col">件名</th>
+					<th scope="col">登録日時</th>
+					<th scope="col">ステータス</th>
+					<th scope="col">操作</th>
+				</thead>
+				<tbody>
+					<tr th:each="inquiry : ${inquiryList}" th:object="${inquiry}">
+						<td th:text="*{id}"></td>
+						<td th:text="*{name}"></td>
+						<td th:text="*{subject}"></td>
+						<td th:text="${#temporals.format(inquiry.createdAt, 'yyyy/MM/dd HH:mm')}"></td>
+						<td>
+							<span th:if="*{status == 0}" class="badge bg-danger">未対応</span>
+							<span th:if="*{status == 1}" class="badge bg-warning text-dark">対応中</span>
+							<span th:if="*{status == 2}" class="badge bg-success">対応済み</span>
+						</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+	
+	<div th:replace="~{fragments/footer :: common_footer}"></div>
+</body>
+</html>
