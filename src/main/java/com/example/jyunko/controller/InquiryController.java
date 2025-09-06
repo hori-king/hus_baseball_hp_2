@@ -1,5 +1,7 @@
 package com.example.jyunko.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,5 +29,12 @@ public class InquiryController {
 		inquiryService.save(inquiry);
 		redirectAttributes.addFlashAttribute("successMessage", "送信完了しました。");
 		return "redirect:/inquiry";
+	}
+
+	@GetMapping("/admin/inquiry")
+	public String ListInquiries(Model model) {
+		List<Inquiry> inquiryList = inquiryService.findAll();
+		model.addAttribute("inquiries", inquiryList);
+		return "admin/inquiries/list";
 	}
 }

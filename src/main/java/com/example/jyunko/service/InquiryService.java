@@ -1,6 +1,7 @@
 package com.example.jyunko.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,9 @@ public class InquiryService {
 		inquiry.setStatus(0);
 		inquiry.setCreatedAt(LocalDateTime.now());
 		inquiryRepository.save(inquiry);
+	}
+
+	public List<Inquiry> findAll() {
+		return inquiryRepository.findAll();
 	}
 }
