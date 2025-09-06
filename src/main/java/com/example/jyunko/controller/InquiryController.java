@@ -31,10 +31,10 @@ public class InquiryController {
 		return "redirect:/inquiry";
 	}
 
-	@GetMapping("/admin/inquiry")
+	@GetMapping("/admin/inquiries")
 	public String ListInquiries(Model model) {
 		List<Inquiry> inquiryList = inquiryService.findAll();
-		model.addAttribute("inquiries", inquiryList);
+		model.addAttribute("inquiryList", inquiryList);
 		return "admin/inquiries/list";
 	}
 }
