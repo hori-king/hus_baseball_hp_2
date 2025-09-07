@@ -23,4 +23,17 @@ public class InquiryService {
 	public List<Inquiry> findAll() {
 		return inquiryRepository.findAll();
 	}
+
+	public Inquiry findById(Integer id) {
+		return inquiryRepository.findById(id).orElse(null);
+	}
+
+	public void updateStatus(Integer id, Integer status) {
+		Inquiry inquiry = findById(id);
+		if (inquiry != null) {
+			inquiry.setStatus(status);
+			inquiryRepository.save(inquiry);
+		}
+	}
+
 }

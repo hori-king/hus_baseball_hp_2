@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.jyunko.entity.Inquiry;
@@ -36,5 +38,11 @@ public class InquiryController {
 		List<Inquiry> inquiryList = inquiryService.findAll();
 		model.addAttribute("inquiryList", inquiryList);
 		return "admin/inquiries/list";
+	}
+
+	@PostMapping("/admin/inquires/{id}/update-status")
+	public String updateInquiryStatus(@PathVariable Integer id, @RequestParam Integer status) {
+		inquiryService.updateStatus(id, status);
+		return "redirect:/admin/inquiries";
 	}
 }
