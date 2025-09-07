@@ -41,6 +41,11 @@
 								<button type of="submit" class="btn btn-sm btn-success" th:if="*{status != 0}">未対応にする</button>
 							</form>
 						</td>
+						<td class="text-nowrap">
+							<form th:action="@{/admin/inquiries/{id}/delete(id=*{id})}" method="post" class="d-inline" onsubmit="return confirm('本当に削除しますか？')">
+								<button type="submit" class="btn btn-sm btn-danger">削除</button>
+							</form>
+						</td>
 					</tr>
 				</tbody>
 			</table>
