@@ -28,17 +28,17 @@
 							<span th:if="*{status == 2}" class="badge bg-success">対応済み</span>
 						</td>
 						<td class="text-nowrap">
-							<form th:action="@{admin/inquires/{id}/update-status(id=*{id})}" method="post" class="d-inline">
+							<form th:action="@{/admin/inquires/{id}/update-status(id=*{id})}" method="post" class="d-inline">
 								<input type="hidden" name="status" value="2">
 								<button type of="submit" class="btn btn-sm btn-success" th:if="*{status != 2}">対応済みにする</button>
 							</form>
-							<form th:action="@{admin/inquires/{id}/update-status(id=*{id})}" method="post" class="d-inline">
+							<form th:action="@{/admin/inquires/{id}/update-status(id=*{id})}" method="post" class="d-inline">
 								<input type="hidden" name="status" value="1">
 								<button type of="submit" class="btn btn-sm btn-success" th:if="*{status != 1}">対応中にする</button>
 							</form>
-							<form th:action="@{admin/inquires/{id}/update-status(id=*{id})}" method="post" class="d-inline">
+							<form th:action="@{/admin/inquires/{id}/update-status(id=*{id})}" method="post" class="d-inline">
 								<input type="hidden" name="status" value="0">
-								<button type of="submit" class="btn btn-sm btn-success" th:if="*{status != 1}">未対応にする</button>
+								<button type of="submit" class="btn btn-sm btn-success" th:if="*{status != 0}">未対応にする</button>
 							</form>
 						</td>
 					</tr>
