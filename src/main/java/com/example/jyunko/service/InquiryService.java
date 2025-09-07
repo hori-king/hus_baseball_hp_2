@@ -36,4 +36,8 @@ public class InquiryService {
 		}
 	}
 
+	public void deleteById(Integer id) {
+		inquiryRepository.deleteById(id);
+	}
+
 }

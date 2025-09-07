@@ -45,4 +45,10 @@ public class InquiryController {
 		inquiryService.updateStatus(id, status);
 		return "redirect:/admin/inquiries";
 	}
+
+	@PostMapping("/admin/inquiries/{id}/delete")
+	public String deleteInquiry(@PathVariable Integer id) {
+		inquiryService.deleteById(id);
+		return "redirect:/admin/inquiries";
+	}
 }
