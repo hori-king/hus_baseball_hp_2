@@ -12,8 +12,12 @@ import com.example.jyunko.repository.NewsRepository;
 public class NewsService {
 	@Autowired
 	private NewsRepository newsRepository;
-	
-	public List<News> findAll(){
+
+	public List<News> findAll() {
 		return newsRepository.findAll();
+	}
+
+	public News findById(Integer id) {
+		return newsRepository.findById(id).orElse(null);
 	}
 }
