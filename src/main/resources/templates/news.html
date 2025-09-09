@@ -6,23 +6,27 @@
 <body>
 	<div th:replace="~{fragments/header :: common_header}"></div>
 	
-	<main class="mt-5">
-		<div class="container text-center mb-5">
+	<main class="mt-5 mb-5">
+		<div class="container text-center">
 			<section>
 				<h1>お知らせ一覧</h1>
 				<div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
 					<div  th:each="item : ${newsList}" class="col">
-						<div class="card h-100">
-							<img th:if="${item.photo}" th:src="@{${item.photo}}" class="card-img-top" alt="ニュース写真" />
-							<div class="card-body">
-								<h5 th:text="${item.title}" class="card-title">ニュース</h5>
-								<p th:text="${item.content}" class="card-text"></p>
-							</div>
-							<div class="card-footer">
-								<small th:text="${#temporals.format(item.postedDate, 'yyyy-MM-dd')}" class="text-body-secondary">
+						
+						<a th:href="@{/news/{id}(id=${item.id})}" class="text-decoration-none text-dark">
+							<div class="card h-100 shadow-sm card-hover">
+								<img th:if="${item.photo}" th:src="@{${item.photo}}" class="card-img-top" alt="ニュース写真" />
+								<div class="card-body">
+									<h5 th:text="${item.title}" class="card-title">ニュース</h5>
+									<p th:text="${item.content}" class="card-text"></p>
+								</div>
+								<div class="card-footer">
+									<small th:text="${#temporals.format(item.postedDate, 'yyyy-MM-dd')}" class="text-body-secondary">
 									Last updated 3 minsago</small>
+								</div>
 							</div>
-						</div>
+						</a>
+						
 					</div>
 				</div>
 			</section>
