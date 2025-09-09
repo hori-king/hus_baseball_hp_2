@@ -13,9 +13,9 @@
 				
 				<div class="row justify-content-center mt-4">
 					<div class="col-md-8">
-						<img th:if="*{photo}" th:src="@{*{photo}}" class="card-img-top" alt="試合写真">
 						
 						<div class="card">
+							<img th:if="*{photo}" th:src="@{*{photo}}" class="card-img-top" alt="試合写真">
 							<div class="card-body">
 								<div class="d-flex justify-content-center align-items-center fs-2 mb-3">
 									<span th:text="*{opponentScore}"></span>
