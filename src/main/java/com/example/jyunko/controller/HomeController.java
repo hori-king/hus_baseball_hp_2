@@ -14,6 +14,7 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String index(Model model) {
+		model.addAttribute("latestNews", newsService.findTop3());
 		return "index";
 	}
 

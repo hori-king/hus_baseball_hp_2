@@ -20,4 +20,8 @@ public class NewsService {
 	public News findById(Integer id) {
 		return newsRepository.findById(id).orElse(null);
 	}
+
+	public List<News> findTop3() {
+		return newsRepository.findTop3ByOrderByPostedDateDesc();
+	}
 }
