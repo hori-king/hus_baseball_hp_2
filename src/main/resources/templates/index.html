@@ -13,6 +13,25 @@
 		</div>
 		
 		<section class="container mb-5">
+			<div class="row justify-content-center">
+				<div class="col-md-7 text-center">
+					<h2>私たちについて</h2>
+					<p class="fs-5">私たち〇〇大学準硬式野球部は、
+						全国大会出場を目指して日々練習に励んでいます。
+						野球を楽しみながらも、真剣に勝利を追求する、文武両道のチームです。
+						初心者、経験者、マネージャー、学年問わず、新しい仲間をいつでも歓迎します！
+					</p>
+				</div>
+				<div class="text-center">
+					<figure class="figure">
+						<img src="https://placehold.jp/1000x400.png?text=活動写真" class="figure-img img-fluid rounded shadow" alt="部活の活動写真">
+						<figcaption class="figure-caption text-center">練習風景の一コマ</figcaption>
+					</figure>
+				</div>
+			</div>
+		</section>
+		
+		<section class="container mb-5">
 			<h2 class="pt-5 mb-5">最近のお知らせ
 				<div class="border-bottom border-danger text-end">
 					<a th:href="@{/matches}" class="btn btn-outline-danger mb-2">お知らせ一覧へ</a>
@@ -67,6 +86,15 @@
 					
 				</article>
 			</div>
+		</section>
+		
+		<section class="cta-section container text-white">
+			<h2 class="text-center py-5">お問い合わせフォーム</h2>
+			<p class="text-center mb-4">ご質問やご意見がございましたら、以下のフォームからお気軽にお問い合わせください。</p>
+			<div class="text-center">
+				<a th:href="@{/inquiry}" class="btn btn-danger btn-lg">お問い合わせ</a>
+			</div>
+					
 		</section>
 		
 	</main>
