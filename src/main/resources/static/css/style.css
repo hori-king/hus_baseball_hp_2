@@ -32,6 +32,16 @@ main{
 	height: 400px;
 }
 
+.cta-section{
+	height: 400px;
+	background-image: linear-gradient(
+		 rgba(0, 0, 0, 0.6),
+		 rgba(0, 0, 0, 0.6)),
+		 url(https://placehold.jp/1000x400.png?text=問い合わせ);
+		  background-size: cover;
+		  background-position: center;
+}
+
 .footer_bg{
 	background-image: linear-gradient(
 		rgba(0, 0, 0, 0.6),
