@@ -20,4 +20,8 @@ public class MatchService {
 	public Match findById(Integer id) {
 		return matchRepository.findById(id).orElse(null);
 	}
+
+	public List<Match> findTop3() {
+		return matchRepository.findTop3ByOrderByMatchDateDesc();
+	}
 }
