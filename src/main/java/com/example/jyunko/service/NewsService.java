@@ -1,5 +1,6 @@
 package com.example.jyunko.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,12 @@ public class NewsService {
 
 	public List<News> findTop3() {
 		return newsRepository.findTop3ByOrderByPostedDateDesc();
+	}
+
+	public void save(News news) {
+		if (news.getPostedDate() == null) {
+			news.setPostedDate(LocalDate.now());
+		}
+		newsRepository.save(news);
 	}
 }
