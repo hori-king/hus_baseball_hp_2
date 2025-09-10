@@ -17,7 +17,7 @@ public class NewsController {
 	private NewsService newsService;
 
 	@GetMapping("/news")
-	public String listNews(Model model) {
+	public String newsList(Model model) {
 		List<News> newsList = newsService.findAll();
 		model.addAttribute("newsList", newsList);
 		return "news";
@@ -28,6 +28,19 @@ public class NewsController {
 		News news = newsService.findById(id);
 		model.addAttribute("newsItem", news);
 		return "news_detail";
+	}
+
+	@GetMapping("/admin/news")
+	public String adminNewsList(Model model) {
+		List<News> newsList = newsService.findAll();
+		model.addAttribute("newsList", newsList);
+		return "admin/news/list";
+	}
+
+	@GetMapping("/admin/news/new")
+	public String NewsForm(Model model) {
+		model.addAttribute("news", new News());
+		return "admin/news/form";
 	}
 
 }
