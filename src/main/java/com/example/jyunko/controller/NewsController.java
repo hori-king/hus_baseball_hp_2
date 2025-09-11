@@ -2,9 +2,12 @@ package com.example.jyunko.controller;
 
 import java.util.List;
 
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,10 +50,34 @@ public class NewsController {
 	}
 
 	@PostMapping("/admin/news")
-	public String createNews(@ModelAttribute News news, RedirectAttributes redirectAttributes) {
+	public String createNews(@ModelAttribute @Valid News news, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasErrors()) {
+			return "admin/news/form";
+		}
 		newsService.save(news);
 		redirectAttributes.addFlashAttribute("successMessage", "お知らせを登録しました。");
 		return "redirect:/admin/news";
 	}
 
+	@GetMapping("/admin/news/{id}/edit")
+	public String editNewsForm(@PathVariable Integer id, Model model) {
+		News news = newsService.findById(id);
+		model.addAttribute("news", news);
+		return "admin/news/form";
+	}
+
+	@PostMapping("/admin/news/{id}/edit")
+	public String updateNews(@PathVariable Integer id, @ModelAttribute News news,
+			@Valid BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasErrors()) {
+			redirectAttributes.addFlashAttribute("errorMessage", "エラーが発生しました。");
+			return "redirect:/admin/news";
+		}
+		news.setId(id);
+		newsService.save(news);
+		redirectAttributes.addFlashAttribute("successMessage", "お知らせを更新しました。");
+
+		return "redirect:/admin/news";
+	}
 }
