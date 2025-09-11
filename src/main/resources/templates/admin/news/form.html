@@ -6,9 +6,11 @@
 	
 	<main class="mt-5 mb-5">
 		<div class="container">
-			<h1>お知らせ登録</h1>
+			<h1 th:if="${news.id == null}">お知らせ登録 新規登録</h1>
+			<h1 th:unless="${news.id == null}">お知らせ 編集</h1>
 			
-			<form th:action="@{/admin/news}" th:object="${news}" method="post">
+			<form th:action="${news.id == null} ? @{/admin/news} : @{/admin/news/{id}/edit(id=${news.id})}" th:object="${news}" method="post">
+				<input type="hidden" th:if="${news.id == null}" th:field="*{id}">
 				<div class="mb-3">
 					<label for="title" class="form-label">タイトル</label>
 					<input type="text" id="title" class="form-control" th:field="*{title}" required>
@@ -23,14 +25,14 @@
 				</div>
 				<div class="mb-3">
 					<label for="content" class="form-label">内容</label>
-					<input type="text" id="content" class="form-control" th:field="*{content}" required>
+					<textarea id="content" class="form-control" rows="10" th:field="*{content}" required></textarea>
 				</div>
 				<div class="mb-3">
 					<label for="photo" class="form-label">写真</label>
 					<input type="text" id="photo" class="form-control" th:field="*{photo}" required>
 				</div>
 
-				<button type="submit" class="btn btn-primary">登録</button>
+				<button type="submit" class="btn btn-primary" th:text="${news.id == null} ? '登録' : '編集'">登録</button>
 				<a th:href="@{/admin/news}" class="btn btn-secondary">一覧に戻る</a>
 			</form>
 			
