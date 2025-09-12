@@ -80,4 +80,11 @@ public class NewsController {
 
 		return "redirect:/admin/news";
 	}
+
+	@PostMapping("/admin/news/{id}/delete")
+	public String deleteNews(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+		newsService.deleteById(id);
+		redirectAttributes.addFlashAttribute("successMessage", "お知らせを削除しました。");
+		return "redirect:/admin/news";
+	}
 }
