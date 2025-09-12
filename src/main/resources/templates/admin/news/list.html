@@ -8,7 +8,7 @@
 		<div class="container">
 			<div class="">
 				<h1>お知らせ管理</h1>
-				<a th:href="@{/admin/news/new}" class="btn btn-primary">新規登録</a>
+				<a th:href="@{/admin/news/new}" class="btn btn-primary mt-4">新規登録</a>
 			</div>
 			
 			<div th:if="${successMessage}" class="alert alert-success mt-4" role="alert" th:text="${successMessage}"></div>
@@ -35,6 +35,9 @@
 						<td th:text="*{photo}"></td>
 						<td>
 							<a th:href="@{/admin/news/{id}/edit(id=*{id})}" class="btn btn-sm btn-outline-primary">編集</a>
+							<form th:action="@{/admin/news/{id}/delete(id=*{id})}" method="post" class="d-inline" onsubmit="return confirm('本当に削除しますか？');">
+								<button type="submit" class="btn btn-sm btn-outline-danger">削除</button>
+							</form>
 						</td>
 					</tr>
 				</tbody>
