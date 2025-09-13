@@ -6,7 +6,7 @@
 	
 	<main class="mt-5 mb-5">
 		<div class="container">
-			<h1 th:if="${news.id == null}">お知らせ登録 新規登録</h1>
+			<h1 th:if="${news.id == null}">お知らせ 新規登録</h1>
 			<h1 th:unless="${news.id == null}">お知らせ 編集</h1>
 			
 			<form th:action="${news.id == null} ? @{/admin/news} : @{/admin/news/{id}/edit(id=${news.id})}" th:object="${news}" method="post">
