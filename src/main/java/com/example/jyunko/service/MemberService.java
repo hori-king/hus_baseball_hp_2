@@ -16,4 +16,16 @@ public class MemberService {
 	public List<Member> findAll() {
 		return memberRepository.findAll();
 	}
+
+	public Member findById(Integer id) {
+		return memberRepository.findById(id).orElse(null);
+	}
+
+	public void save(Member member) {
+		memberRepository.save(member);
+	}
+
+	public void deleteById(Integer id) {
+		memberRepository.deleteById(id);
+	}
 }
