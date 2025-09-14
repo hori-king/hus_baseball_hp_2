@@ -31,10 +31,10 @@
 				<tbody>
 					<tr th:each="match : ${matchList}" th:object="${match}">
 						<td th:text="*{opponent}">対戦相手</td>
-						<td th:text="*{match_date}">試合日</td>
+						<td th:text="*{matchDate}">試合日</td>
 						<td th:text="*{venue}">球場</td>
-						<td th:text="*{our_score}">得点</td>
-						<td th:text="*{opponent_score}">失点</td>
+						<td th:text="*{ourScore}">得点</td>
+						<td th:text="*{opponentScore}">失点</td>
 						<td th:text="*{result}">試合結果</td>
 						<td th:text="*{comment}">コメント</td>
 						<td th:text="*{photo}">写真</td>
