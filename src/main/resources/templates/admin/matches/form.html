@@ -4,32 +4,32 @@
 <body>
 	<div th:replace="~{fragments/header :: common_header}"></div>
 	
-	<main class="mt-5">
+	<main class="mt-5 mb-5">
 		<div class="container">
 			<h1 th:if="${match.id == null}">試合 新規	登録</h1>
 			<h1 th:unless="${match.id == null}">試合 編集</h1>
 			
-			<form th:action="${match.id == null} ? @{/admin/matches/} : @{/admin/matches/{id}/edit(id=${match.id})}"
+			<form th:action="${match.id == null} ? @{/admin/matches} : @{/admin/matches/{id}/edit(id=${match.id})}"
 				method="post" th:object="${match}">
 				<div class="mb-3">
 					<label for="opponent" class="form-label">対戦相手</label>
 					<input type="text" id="opponent" class="form-control" th:field="*{opponent}" required>
 				</div>
 				<div class="mb-3">
-					<label for="match_date" class="form-label">試合日</label>
-					<input type="date" id="match_date" class="form-control" th:field="*{match_date}" required>
+					<label for="matchDate" class="form-label">試合日</label>
+					<input type="date" id="matchDate" class="form-control" th:field="*{matchDate}" required>
 				</div>
 				<div class="mb-3">
 					<label for="venue" class="form-label">球場</label>
 					<input type="text" id="venue" class="form-control" th:field="*{venue}" required>
 				</div>
 				<div class="mb-3">
-					<label for="our_score" class="form-label">得点</label>
-					<input type="number" id="our_score" class="form-control" th:field="*{our_score}" required>
+					<label for="ourScore" class="form-label">得点</label>
+					<input type="number" id="ourScore" class="form-control" th:field="*{ourScore}" required>
 				</div>
 				<div class="mb-3">
-					<label for="opponent_score" class="form-label">失点</label>
-					<input type="number" id="opponent_score" class="form-control" th:field="*{opponent_score}" required>
+					<label for="opponentScore" class="form-label">失点</label>
+					<input type="number" id="opponentScore" class="form-control" th:field="*{opponentScore}" required>
 				</div>
 				<div class="mb-3">
 					<label for="result" class="form-label">試合結果</label>
@@ -45,7 +45,7 @@
 				</div>
 				
 				<button type="submit" class="btn btn-primary" th:text="${match.id == null} ? '登録' : '編集'"></button>
-				<a th:href="@{/admin/matches}" class="btn btn-">試合管理一覧へ</a>
+				<a th:href="@{/admin/matches}" class="btn btn-secondary">試合管理一覧へ</a>
 				
 			</form>
 		</div>
