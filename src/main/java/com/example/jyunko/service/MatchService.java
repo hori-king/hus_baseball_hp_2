@@ -24,4 +24,13 @@ public class MatchService {
 	public List<Match> findTop3() {
 		return matchRepository.findTop3ByOrderByMatchDateDesc();
 	}
+
+	public void save(Match match) {
+		matchRepository.save(match);
+	}
+
+	public void deleteById(Integer id) {
+		matchRepository.deleteById(id);
+	}
+
 }
