@@ -61,4 +61,31 @@ public class MatchController {
 		return "redirect:/admin/matches";
 	}
 
+	@GetMapping("/admin/matches/{id}/edit")
+	public String editMatchForm(@PathVariable Integer id, Model model) {
+		Match match = matchService.findById(id);
+		model.addAttribute("match", match);
+		return "admin/matches/form";
+	}
+
+	@PostMapping("/admin/matches/{id}/edit")
+	public String updateMatch(@PathVariable Integer id, @ModelAttribute @Valid Match match, BindingResult bindingResult,
+			RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasErrors()) {
+			redirectAttributes.addFlashAttribute("errorMessage", "エラーが発生しました。");
+			return "admin/matches";
+		}
+		match.setId(id);
+		matchService.save(match);
+		redirectAttributes.addFlashAttribute("successMessage", "試合結果を更新しました。");
+		return "redirect:/admin/matches";
+	}
+
+	@PostMapping("/admin/matches/{id}/delete")
+	public String deleteMatch(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+		matchService.deleteById(id);
+		redirectAttributes.addFlashAttribute("successMessage", "試合結果を削除しました。");
+		return "redirect:/admin/matches";
+	}
+
 }
