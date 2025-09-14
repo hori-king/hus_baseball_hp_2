@@ -8,7 +8,7 @@
 		<div class="container">
 			<div>
 				<h1>試合管理</h1>
-				<a th:href="@{/admin/matches/news}" class="btn btn-primary mt-4"></a>
+				<a th:href="@{/admin/matches/news}" class="btn btn-primary mt-4">新規登録</a>
 			</div>
 			
 			<div th:if=${successMessage} class="alert alert-success mt-4" th:text="${successMessage}"></div>
@@ -25,6 +25,7 @@
 						<td>試合結果</td>
 						<td>コメント</td>
 						<td>写真</td>
+						<td>操作</td>
 					</tr>
 				</thead>
 				
@@ -38,6 +39,12 @@
 						<td th:text="*{result}">試合結果</td>
 						<td th:text="*{comment}">コメント</td>
 						<td th:text="*{photo}">写真</td>
+						<td>
+							<a th:href="@{/admin/matches/{id}/edit(id=*{id})}" class="btn btn-sm btn-primary">編集</a>
+							<form th:action="@{/admin/matches/{id}/delete(id = *{id})}" method="post" class="d-inline" onsubmit="return confirm('本当に削除しますか？')">
+								<button type="submit" class="btn btn-sm btn-outline-danger">削除</button>
+							</form>
+						</td>
 					</tr>
 				</tbody>
 			</table>
