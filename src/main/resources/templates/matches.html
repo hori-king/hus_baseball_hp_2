@@ -22,9 +22,9 @@
 							<div class="card-body">
 								<h3 class="card-title text-center" th:text="'対戦相手： '+${match.opponent}"></h3>
 								<div class="d-flex justify-content-center align-items-center fs-3">
-									<span th:text="${match.opponentScore}"></span>
-									<span class="mx-2">-</span>
 									<span th:text="${match.ourScore}"></span>
+									<span class="mx-2">-</span>
+									<span th:text="${match.opponentScore}"></span>
 								</div>
 								<p class="text-center fs-4 fw-bold"
 									th:text="${match.result}"
