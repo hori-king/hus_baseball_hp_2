@@ -7,10 +7,10 @@
 	<main class="mt-5">
 		<div class="container">
 			<h1 class="mb-4">お問い合わせ一覧</h1>
-			<table class="table table-striped">
-				<thead>
-					<th scope="col">氏名</th>
+			<table class="table table-striped table-hover">
+				<thead class="table-dark">
 					<th scope="col">ID</th>
+					<th scope="col">氏名</th>
 					<th scope="col">件名</th>
 					<th scope="col">登録日時</th>
 					<th scope="col">ステータス</th>
@@ -40,9 +40,7 @@
 								<input type="hidden" name="status" value="0">
 								<button type of="submit" class="btn btn-sm btn-success" th:if="*{status != 0}">未対応にする</button>
 							</form>
-						</td>
-						<td class="text-nowrap">
-							<form th:action="@{/admin/inquiries/{id}/delete(id=*{id})}" method="post" class="d-inline" onsubmit="return confirm('本当に削除しますか？')">
+							<form th:action="@{/admin/inquiries/{id}/delete(id=*{id})}" method="post" class="d-inline ps-3" onsubmit="return confirm('本当に削除しますか？')">
 								<button type="submit" class="btn btn-sm btn-danger">削除</button>
 							</form>
 						</td>
