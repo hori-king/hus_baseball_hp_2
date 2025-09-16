@@ -8,15 +8,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.example.jyunko.controller.MatchController;
 import com.example.jyunko.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+	private final MatchController matchController;
 	private final UserDetailsServiceImpl userDetailsServiceImpl;
 
-	public SecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl) {
+	public SecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl, MatchController matchController) {
 		this.userDetailsServiceImpl = userDetailsServiceImpl;
+		this.matchController = matchController;
 	}
 
 	@Bean
@@ -29,7 +33,8 @@ public class SecurityConfig {
 				.requestMatchers("/", "/news/**", "/members/**", "/matches/**").permitAll()
 				// 上記以外のすべてのリクエストは、認証（ログイン）が必要
 				.requestMatchers("/inquiry").permitAll()
-				.anyRequest().authenticated()).formLogin(login -> login
+				.anyRequest().authenticated())
+				.formLogin(login -> login
 						// ログインページのURLを指定
 						.loginPage("/login")
 						// ログイン成功後のリダイレクト先を指定
@@ -37,8 +42,13 @@ public class SecurityConfig {
 						// ログインページのURLを誰でもアクセスできるように設定
 						.permitAll())
 				.logout(logout -> logout
+						.logoutUrl("/logout")
 						// ログアウト成功後のリダイレクト先を指定
-						.logoutSuccessUrl("/"));
+						.logoutSuccessUrl("/")
+						.invalidateHttpSession(true)// セッションを無効化
+						.deleteCookies("JSESSIONID")// クッキーを削除
+						.permitAll());// ログアウトは誰でも許可
+
 		return http.build();
 	}
 
