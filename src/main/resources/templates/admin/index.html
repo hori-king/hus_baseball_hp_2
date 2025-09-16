@@ -50,6 +50,15 @@
 				</div>
 				
 			</div>
+			
+			<div class="text-center mt-5">
+				<a th:href="@{/}" class="btn btn-secondary">メインページへ</a>
+			</div>
+			<div class="text-center mt-5">
+				<form th:action="@{/logout}" method="post" class="d-flex justify-content-center">
+					<button type="submit" class="btn btn-outline-danger">ログアウト</button>
+				</form>
+			</div>
 		</section>
 	</main>
 	
