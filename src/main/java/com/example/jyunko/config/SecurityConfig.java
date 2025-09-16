@@ -33,7 +33,7 @@ public class SecurityConfig {
 						// ログインページのURLを指定
 						.loginPage("/login")
 						// ログイン成功後のリダイレクト先を指定
-						.defaultSuccessUrl("/")
+						.defaultSuccessUrl("/admin")
 						// ログインページのURLを誰でもアクセスできるように設定
 						.permitAll())
 				.logout(logout -> logout
