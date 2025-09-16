@@ -26,6 +26,9 @@
 						<li class="nav-item me-3">
 							<a class="nav-link link-light" th:href="@{/inquiry}">お問い合わせ</a>
 						</li>	
+						<li th:if="${#authorization.expression('isAuthenticated()')}" class="nav-item me-3">
+							<a class="nav-link link-light" th:href="@{/admin}">管理者画面</a>
+						</li>
 					</ul>
 				</div>
 			</div>
