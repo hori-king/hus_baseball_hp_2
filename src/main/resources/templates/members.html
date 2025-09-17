@@ -16,10 +16,11 @@
 						<img th:if="${member.photo}" th:src="@{${member.photo}}" class="member_img card-img-top" alt="部員写真">
 						<div class="card-body d-flex flex-column">
 							<ul class="list-group list-group-flush">
-								<li class="list-group-item"  th:text="'名前:' + ${member.name}">名前</li>
-								<li class="list-group-item" th:text="'学年:' + ${member.grade}">学年</li>
-								<li class="list-group-item" th:text="'出身校:' + ${member.almaMater}">出身校</li>
-								<li class="list-group-item" th:text="'ポジション:' + ${member.position}">ポジション</li>
+								<li class="list-group-item"  th:text="'名前 : ' + ${member.name}">名前</li>
+								<li class="list-group-item" th:text="'学年 : ' + ${member.grade}">学年</li>
+								<li class="list-group-item" th:text="'背番号 : ' + ${member.number}"></li>
+								<li class="list-group-item" th:text="'出身校 : ' + ${member.almaMater}">出身校</li>
+								<li class="list-group-item" th:text="'ポジション : ' + ${member.position}">ポジション</li>
 								<li class="list-group-item" th:text="${member.ambition}">意気込み</li>
 							</ul>
 						</div>
