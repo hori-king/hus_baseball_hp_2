@@ -31,8 +31,8 @@ public class SecurityConfig {
 				// お問い合わせフォームは誰でもアクセスできるように設定
 				.requestMatchers("/css/**", "/images/**").permitAll()
 				.requestMatchers("/", "/news/**", "/members/**", "/matches/**").permitAll()
-				// 上記以外のすべてのリクエストは、認証（ログイン）が必要
 				.requestMatchers("/inquiry").permitAll()
+				// 上記以外のすべてのリクエストは、認証（ログイン）が必要
 				.anyRequest().authenticated())
 				.formLogin(login -> login
 						// ログインページのURLを指定
@@ -44,7 +44,7 @@ public class SecurityConfig {
 				.logout(logout -> logout
 						.logoutUrl("/logout")
 						// ログアウト成功後のリダイレクト先を指定
-						.logoutSuccessUrl("/")
+						.logoutSuccessUrl("/?logout")
 						.invalidateHttpSession(true)// セッションを無効化
 						.deleteCookies("JSESSIONID")// クッキーを削除
 						.permitAll());// ログアウトは誰でも許可
