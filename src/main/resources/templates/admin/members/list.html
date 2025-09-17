@@ -22,7 +22,8 @@
 						<td>背番号</td>
 						<td>ポジション</td>
 						<td>出身校</td>
-						<td>意気込み</td>
+						<td>学部</td>
+						<td>学科</td>
 						<td>写真</td>
 						<td>操作</td>
 					</tr>
@@ -35,7 +36,8 @@
 						<td th:text="*{number}"></td>
 						<td th:text="*{position}"></td>
 						<td th:text="*{almaMater}"></td>
-						<td th:text="*{ambition}"></td>
+						<td th:text="*{faculty}"></td>
+						<td th:text="*{department}"></td>
 						<td th:text="*{photo}"></td>
 						<td>
 							<a th:href="@{/admin/members/{id}/edit(id=*{id})}" class="btn btn-sm btn-outline-primary">編集</a>

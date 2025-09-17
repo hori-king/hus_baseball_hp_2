@@ -22,6 +22,7 @@ public class Member {
 	private String position;
 	@Column(name = "alma_mater")
 	private String almaMater;
-	private String ambition;
+	private String faculty;
+	private String department;
 	private String photo;
 }

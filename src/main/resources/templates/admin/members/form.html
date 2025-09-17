@@ -4,7 +4,7 @@
 <body>
 	<div th:replace="~{fragments/admin_header :: common_admin_header}"></div>
 	
-	<main class="mt-5">
+	<main class="mt-5 mb-5">
 		<div class="container">
 			<h1 th:if="${member.id == null}">部員 新規登録</h1>
 			<h1 th:unless="${member.id == null}">部員 編集</h1>
@@ -32,9 +32,14 @@
 					<input type="text" id="almaMater" class="form-control" th:field="*{almaMater}" required>
 				</div>
 				<div class="mb-3">
-					<label for="ambition" class="form-label">意気込み</label>
-					<input type="text" id="ambition" class="form-control" th:field="*{ambition}" required>
+					<label for="faculty" class="form-label">学部</label>
+					<input type="text" id="faculty" class="form-control" th:field="*{faculty}" required>
 				</div>
+				<div class="mb-3">
+					<label for="department" class="form-label">学科</label>
+					<input type="text" id="department" class="form-control" th:field="*{department}" required>
+				</div>
+				
 				<div class="mb-3">
 					<label for="photo" class="form-label">写真</label>
 					<input type="text" id="photo" class="form-control" th:field="*{photo}" required>

@@ -17,11 +17,12 @@
 						<div class="card-body d-flex flex-column">
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item"  th:text="'名前 : ' + ${member.name}">名前</li>
-								<li class="list-group-item" th:text="'学年 : ' + ${member.grade}">学年</li>
+								<li class="list-group-item" th:text="'学年 : ' + ${member.grade} + '年'">学年</li>
 								<li class="list-group-item" th:text="'背番号 : ' + ${member.number}"></li>
 								<li class="list-group-item" th:text="'出身校 : ' + ${member.almaMater}">出身校</li>
 								<li class="list-group-item" th:text="'ポジション : ' + ${member.position}">ポジション</li>
-								<li class="list-group-item" th:text="${member.ambition}">意気込み</li>
+								<li class="list-group-item" th:text="'学部 : ' + ${member.faculty}">学部</li>
+								<li class="list-group-item" th:text="'学科 : ' + ${member.department}">学科</li>
 							</ul>
 						</div>
 					</div>
