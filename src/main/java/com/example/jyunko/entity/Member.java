@@ -18,6 +18,7 @@ public class Member {
 	private Integer id;
 	private String name;
 	private String grade;
+	private Integer number;
 	private String position;
 	@Column(name = "alma_mater")
 	private String almaMater;

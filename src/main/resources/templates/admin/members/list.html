@@ -19,6 +19,7 @@
 					<tr>
 						<td>名前</td>
 						<td>学年</td>
+						<td>背番号</td>
 						<td>ポジション</td>
 						<td>出身校</td>
 						<td>学部</td>
@@ -32,6 +33,7 @@
 					<tr th:each="member : ${memberList}" th:object="${member}">
 						<td th:text="*{name}"></td>
 						<td th:text="*{grade}"></td>
+						<td th:text="*{number}"></td>
 						<td th:text="*{position}"></td>
 						<td th:text="*{almaMater}"></td>
 						<td th:text="*{faculty}"></td>
