@@ -15,18 +15,23 @@ public class HomeController {
 	@Autowired
 	private MatchService matchService;
 
+	// トップページ
 	@GetMapping("/")
 	public String index(Model model) {
+		// 最新のニュース3件取得してモデルに追加
 		model.addAttribute("latestNews", newsService.findTop3());
+		// 最新の試合3件を取得してモデルに追加
 		model.addAttribute("latestMatches", matchService.findTop3());
 		return "index";
 	}
 
+	// ログインページ
 	@GetMapping("/login")
 	public String showLogin() {
 		return "login";
 	}
 
+	// 管理者ページ
 	@GetMapping("/admin")
 	public String showAdmin() {
 		return "admin/index";

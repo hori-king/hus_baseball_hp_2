@@ -20,19 +20,24 @@ public class InquiryController {
 	@Autowired
 	private InquiryService inquiryService;
 
+	// ユーザー向け問い合わせフォーム表示
 	@GetMapping("/inquiry")
 	public String showInquiryForm(Model model) {
 		model.addAttribute("inquiry", new Inquiry());
 		return "inquiry";
 	}
 
+	// ユーザー向け問い合わせフォーム送信処理
 	@PostMapping("/inquiry")
 	public String saveInquiry(@ModelAttribute Inquiry inquiry, RedirectAttributes redirectAttributes) {
+		// ステータスを未対応に設定
 		inquiryService.save(inquiry);
+		//送信完了したらメッセージを返す
 		redirectAttributes.addFlashAttribute("successMessage", "送信完了しました。");
 		return "redirect:/inquiry";
 	}
 
+	// 管理者向け問い合わせ一覧表示
 	@GetMapping("/admin/inquiries")
 	public String ListInquiries(Model model) {
 		List<Inquiry> inquiryList = inquiryService.findAll();
@@ -40,14 +45,18 @@ public class InquiryController {
 		return "admin/inquiries/list";
 	}
 
+	// 管理者向け問い合わせステータス更新処理
 	@PostMapping("/admin/inquires/{id}/update-status")
 	public String updateInquiryStatus(@PathVariable Integer id, @RequestParam Integer status) {
+		// ステータスを更新
 		inquiryService.updateStatus(id, status);
 		return "redirect:/admin/inquiries";
 	}
 
+	// 管理者向け問い合わせ削除処理
 	@PostMapping("/admin/inquiries/{id}/delete")
 	public String deleteInquiry(@PathVariable Integer id) {
+		// 問い合わせを削除
 		inquiryService.deleteById(id);
 		return "redirect:/admin/inquiries";
 	}
