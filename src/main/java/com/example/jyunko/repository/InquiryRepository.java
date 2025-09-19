@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.jyunko.entity.Inquiry;
 
 @Repository
+// Inquiryエンティティに対するCRUD操作を提供するリポジトリインターフェース
 public interface InquiryRepository extends JpaRepository<Inquiry, Integer> {
 
 }

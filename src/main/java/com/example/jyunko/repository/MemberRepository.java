@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.jyunko.entity.Member;
 
 @Repository
+// Memberエンティティに対するCRUD操作を提供するリポジトリインターフェース
 public interface MemberRepository extends JpaRepository<Member, Integer> {
 
 }
