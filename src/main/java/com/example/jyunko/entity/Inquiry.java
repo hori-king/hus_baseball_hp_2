@@ -15,15 +15,22 @@ import lombok.Data;
 @Table(name = "inquiry")
 @Data
 public class Inquiry {
+	// 問い合わせID
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	// 名前
 	private String name;
+	// メールアドレス
 	private String email;
+	// 件名
 	private String subject;
+	// 内容
 	@Column(columnDefinition = "TEXT")
 	private String content;
-	private Integer status; // 0:未対応, 1:対応中, 2:対応済み
+	// ステータス（0:未対応, 1:対応中, 2:対応済み）
+	private Integer status;
+	// 作成日時
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 }

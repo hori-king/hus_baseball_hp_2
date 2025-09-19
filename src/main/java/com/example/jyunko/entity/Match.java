@@ -17,15 +17,20 @@ import lombok.Data;
 @Table(name = "matches")
 @Data
 public class Match {
+	// 試合ID
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	// 試合日
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "match_date")
 	private LocalDate matchDate;
+	// 対戦相手
 	private String opponent;
+	//得点
 	@Column(name = "our_score")
 	private Integer ourScore;
+	//失点
 	@Column(name = "opponent_score")
 	private Integer opponentScore;
 	// 例: "勝利", "敗北", "引き分け" などを文字列で保存
@@ -35,6 +40,7 @@ public class Match {
 	// 長いコメントを保存できるようにTEXT型を指定
 	@Column(columnDefinition = "TEXT")
 	private String comment;
+	// 試合の写真のURLやパスを保存
 	private String photo;
 
 }
