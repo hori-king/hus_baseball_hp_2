@@ -47,6 +47,8 @@ public class MemberController {
 	//新規登録フォームを表示
 	@GetMapping("/admin/members/new")
 	public String memberForm(Model model) {
+		//ポジションの選択肢をモデルにセット
+		model.addAttribute("positions", List.of("投手", "捕手", "内野手", "外野手", "マネージャー"));
 		//空のMemberオブジェクトをモデルにセット
 		model.addAttribute("member", new Member());
 		//新規登録フォームを表示
@@ -73,6 +75,8 @@ public class MemberController {
 	//編集フォームを表示
 	@GetMapping("/admin/members/{id}/edit")
 	public String editMemberForm(@PathVariable Integer id, Model model) {
+		//ポジションの選択肢をモデルにセット
+		model.addAttribute("positions", List.of("投手", "捕手", "内野手", "外野手", "マネージャー"));
 		//idに該当する部員情報をデータベースから取得
 		Member member = memberService.findById(id);
 		//モデルにセット
