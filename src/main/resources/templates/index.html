@@ -6,6 +6,7 @@
 	
 	<main class="mt-5 mb-5">
 		<div class="text-center mb-5">
+			<!--管理者ページからログアウトした時に表示-->
 			<div th:if="${param.logout}" class="alert alert-success" role="alert">
 				ログアウトしました。
 			</div>
@@ -26,12 +27,15 @@
 						初心者、経験者、マネージャー、学年問わず、新しい仲間をいつでも歓迎します！
 					</p>
 				</div>
+				
+				<!--部活の雰囲気のわかる写真-->
 				<div class="text-center">
 					<figure class="figure">
 						<img src="https://placehold.jp/1000x400.png?text=活動写真" class="figure-img img-fluid rounded shadow" alt="部活の活動写真">
 						<figcaption class="figure-caption text-center">練習風景の一コマ</figcaption>
 					</figure>
 				</div>
+				
 			</div>
 		</section>
 		
@@ -94,7 +98,9 @@
 		
 		<section class="cta-section container text-white">
 			<h2 class="text-center py-5">お問い合わせフォーム</h2>
-			<p class="text-center mb-4">ご質問やご意見がございましたら、以下のフォームからお気軽にお問い合わせください。</p>
+			<p class="text-center mb-4">
+				ご質問やご意見がございましたら、以下のフォームからお気軽にお問い合わせください。
+			</p>
 			<div class="text-center">
 				<a th:href="@{/inquiry}" class="btn btn-danger btn-lg">お問い合わせ</a>
 			</div>
