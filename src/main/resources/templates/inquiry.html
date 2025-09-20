@@ -17,19 +17,19 @@
 					<form th:action="@{/inquiry}" th:object="${inquiry}" class="text-center" method="post">
 						<div class="row mb-3">
 							<label for="name" class="col-sm-3 col-form-label fs-5">お名前</label>
-							<input type="text" id="name" class="col-sm-9 form-controll" th:field="*{name}" required>
+							<input type="text" id="name" class="col-sm-9 form-control" th:field="*{name}" required>
 						</div>
 						<div class="row mb-3">
 							<label for="email" class="col-sm-3 col-form-label fs-5">メールアドレス</label>
-							<input type="email" id="email" class="col-sm-9 form-controll" th:field="*{email}" required>
+							<input type="email" id="email" class="col-sm-9 form-control" th:field="*{email}" required>
 						</div>
 						<div class="row mb-3">
 							<label for="subject" class="col-sm-3 col-form-label fs-5">件名</label>
-							<input type="text" id="subject" class="col-sm-9 form-controll" th:field="*{subject}" required>
+							<input type="text" id="subject" class="col-sm-9 form-control" th:field="*{subject}" required>
 						</div>
 						<div class="row mb-3">
 							<label for="content" class="col-sm-3 col-form-label fs-5">質問内容</label>
-							<textarea id="content" class="col-sm-9 form-controll" rows="5" th:field="*{content}" required></textarea>
+							<textarea id="content" class="col-sm-9 form-control" rows="5" th:field="*{content}" required></textarea>
 						</div>
 						<div class="text-center">
 							<input  type="submit" class="btn btn-primary"></input>
