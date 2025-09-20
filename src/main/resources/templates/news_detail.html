@@ -7,7 +7,7 @@
 	<main class="mt-5 mb-5">
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-lg-8" th:object=${newsItem}>
+				<article class="col-lg-8" th:object="${newsItem}">
 					<p class="text-muted" th:text="*{#temporals.format(postedDate, 'yyyy年MM月dd日')}"></p>
 					<h1 class="mb-4 border-bottom border-danger" th:text="*{title}">タイトル</h1>
 					<div class="text-center">
@@ -21,7 +21,7 @@
 					<div class="text-end mt-4">
 						<a th:href="@{/news}" class="btn btn-danger">お知らせ一覧に戻る</a>
 					</div>
-				</div>
+				</article>
 			</div>
 		</div>
 	</main>

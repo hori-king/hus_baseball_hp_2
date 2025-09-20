@@ -12,7 +12,7 @@
 				<h1 class="mb-4 text-center" th:text="'対戦相手：'+*{opponent}"></h1>
 				
 				<div class="row justify-content-center mt-4">
-					<div class="col-md-8">
+					<article class="col-md-8">
 						
 						<div class="card">
 							<img th:if="*{photo}" th:src="@{*{photo}}" class="card-img-top" alt="試合写真">
@@ -38,9 +38,8 @@
 							<a th:href="@{/matches}" class="btn btn-secondary">一覧に戻る</a>
 						</div>
 						
-					</div>
+					</article>
 				</div>
-			</div>
 				
 			</div>
 		</div>
