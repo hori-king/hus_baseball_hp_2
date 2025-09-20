@@ -25,7 +25,10 @@
 				</div>
 				<div class="mb-3">
 					<label for="position" class="form-label">ポジション</label>
-					<input type="text" id="position" class="form-control" th:field="*{position}" required>
+					<select id="position" class="form-select" th:field="*{position}">
+						<option value="">選択してください</option>
+						<option th:each="position : ${positions}" th:value="${position}" th:text="${position}"></option>
+					</select>
 				</div>
 				<div class="mb-3">
 					<label for="almaMater" class="form-label">出身校</label>
