@@ -9,7 +9,9 @@
 			<h1 th:if="${member.id == null}">部員 新規登録</h1>
 			<h1 th:unless="${member.id == null}">部員 編集</h1>
 			
-			<form th:action="${member.id == null} ? @{/admin/members} : @{/admin/members/{id}/edit(id=${member.id})}" method="post" th:object="${member}">
+			<form th:action="${member.id == null} ? @{/admin/members} : @{/admin/members/{id}/edit(id=${member.id})}"
+				method="post" th:object="${member}" enctype="multipart/form-data">
+				
 				<input type="hidden" th:if="${member.id == null}" th:field=*{id}>
 				<div class="mb-3">
 					<label for="name" class="form-label">名前</label>
@@ -55,7 +57,9 @@
 				
 				<div class="mb-3">
 					<label for="photo" class="form-label">写真</label>
-					<input type="text" id="photo" class="form-control" th:field="*{photo}" required>
+					<input type="file" id="photo" name="photo" class="form-control" required>
+					
+					<div th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}" class="text-danger small"></div>
 				</div>
 				
 				<div class="justify-content-center d-flex gap-5 mt-5">

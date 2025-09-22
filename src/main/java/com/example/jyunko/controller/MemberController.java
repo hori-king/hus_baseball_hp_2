@@ -1,5 +1,6 @@
 package com.example.jyunko.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import jakarta.validation.Valid;
@@ -8,10 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.jyunko.entity.Member;
@@ -21,6 +26,11 @@ import com.example.jyunko.service.MemberService;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.setDisallowedFields("photo");
+	}
 
 	//部員一覧を表示
 	@GetMapping("/members")
@@ -64,14 +74,26 @@ public class MemberController {
 	//新規部員をデータベースに保存
 	@PostMapping("/admin/members")
 	public String createMember(@ModelAttribute @Valid Member member, BindingResult bindingResult,
+			@RequestParam("photo") MultipartFile photo,
 			RedirectAttributes redirectAttributes) {
 		//エラーチェック
 		if (bindingResult.hasErrors()) {
 			//フォームに戻る
 			return "admin/members/form";
 		}
-		//データベースに保存
-		memberService.save(member);
+
+		//写真がアップロードされているかチェック
+		if (photo.isEmpty()) {
+			bindingResult.rejectValue("photo", "error.members", "写真をアップロードしてください。");
+		}
+
+		try {
+			memberService.saveWithPhoto(member, photo);
+		} catch (IOException e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "写真のアップロードに失敗しました。");
+			return "redirect:/admin/members/new";
+		}
+
 		//リダイレクト時に一度だけ表示するメッセージ
 		redirectAttributes.addFlashAttribute("successMessage", "メンバーを登録しました。");
 		//部員一覧画面にリダイレクト
@@ -100,15 +122,29 @@ public class MemberController {
 	//部員情報の更新
 	@PostMapping("/admin/members/{id}/edit")
 	public String editMember(@PathVariable Integer id,
-			@ModelAttribute @Valid Member member, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+			@ModelAttribute @Valid Member member, BindingResult bindingResult,
+			@RequestParam("photo") MultipartFile photo,
+			RedirectAttributes redirectAttributes) {
 		//エラーチェック
 		if (bindingResult.hasErrors()) {
 			//フォームに戻る
 			return "admin/members/form";
 		}
+
+		if (photo.isEmpty()) {
+			bindingResult.rejectValue("photo", "error.members", "写真をアップロードしてください。");
+		}
+
 		//idをセットしてデータベースに保存
 		member.setId(id);
-		memberService.save(member);
+
+		try {
+			memberService.saveWithPhoto(member, photo);
+		} catch (IOException e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "写真のアップロードに失敗しました。");
+			return "redirect:/admin/members/form";
+		}
+
 		//リダイレクト時に一度だけ表示するメッセージ
 		redirectAttributes.addFlashAttribute("successMessage", "メンバー情報を更新しました。");
 		//部員一覧画面にリダイレクト
