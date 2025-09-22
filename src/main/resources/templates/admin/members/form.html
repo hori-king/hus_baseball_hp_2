@@ -36,11 +36,17 @@
 				</div>
 				<div class="mb-3">
 					<label for="faculty" class="form-label">学部</label>
-					<input type="text" id="faculty" class="form-control" th:field="*{faculty}" required>
+					<select id="faculty" class="form-select" th:field="*{faculty}">
+						<option value="">選択してください</option>
+						<option th:each="faculty : ${faculties}" th:value="${faculty}" th:text="${faculty}"></option>
+					</select>
 				</div>
 				<div class="mb-3">
 					<label for="department" class="form-label">学科</label>
-					<input type="text" id="department" class="form-control" th:field="*{department}" required>
+					<select id="department" class="form-select" th:field="*{department}">
+						<option value="">選択してください</option>
+						<option th:each="department : ${departments}" th:value="${department}" th:text="${department}"></option>
+					</select>
 				</div>
 				
 				<div class="mb-3">
