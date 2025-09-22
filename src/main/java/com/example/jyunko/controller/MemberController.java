@@ -49,6 +49,12 @@ public class MemberController {
 	public String memberForm(Model model) {
 		//ポジションの選択肢をモデルにセット
 		model.addAttribute("positions", List.of("投手", "捕手", "内野手", "外野手", "マネージャー"));
+		//学部の選択肢をモデルにセット
+		model.addAttribute("facluties", List.of("工学部", "情報科学部", "薬学部", "保健医療学部", "未来デザイン学部"));
+		//学科の選択肢をモデルにセット
+		model.addAttribute("departments", List.of("機械工学科", "情報工学科", "電気電子工学科", "建築学科", "都市環境学科",
+				"情報科学科", "薬学科", "看護学科", "理学療法学科", "臨床工学科", "診療放射線学科",
+				"メディアデザイン学科", "人間社会学科"));
 		//空のMemberオブジェクトをモデルにセット
 		model.addAttribute("member", new Member());
 		//新規登録フォームを表示
@@ -77,6 +83,12 @@ public class MemberController {
 	public String editMemberForm(@PathVariable Integer id, Model model) {
 		//ポジションの選択肢をモデルにセット
 		model.addAttribute("positions", List.of("投手", "捕手", "内野手", "外野手", "マネージャー"));
+		//学部の選択肢をモデルにセット
+		model.addAttribute("faculties", List.of("工学部", "情報科学部", "薬学部", "保健医療学部", "未来デザイン学部"));
+		//学科の選択肢をモデルにセット
+		model.addAttribute("departments", List.of("機械工学科", "情報工学科", "電気電子工学科", "建築学科", "都市環境学科",
+				"情報科学科", "薬学科", "看護学科", "理学療法学科", "臨床工学科", "診療放射線学科",
+				"メディアデザイン学科", "人間社会学科"));
 		//idに該当する部員情報をデータベースから取得
 		Member member = memberService.findById(id);
 		//モデルにセット
