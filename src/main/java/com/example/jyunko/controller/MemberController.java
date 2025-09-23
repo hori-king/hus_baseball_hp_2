@@ -77,24 +77,23 @@ public class MemberController {
 	public String createMember(@ModelAttribute @Valid Member member, BindingResult bindingResult,
 			@RequestParam("photo") MultipartFile photo,
 			RedirectAttributes redirectAttributes) {
+		//写真がアップロードされているかチェック
+		if (photo.isEmpty()) {
+			bindingResult.rejectValue("photo", "error.members", "写真をアップロードしてください。");
+		}
+
 		//エラーチェック
 		if (bindingResult.hasErrors()) {
 			//フォームに戻る
 			return "admin/members/form";
 		}
 
-		//写真がアップロードされているかチェック
-		if (photo.isEmpty()) {
-			bindingResult.rejectValue("photo", "error.members", "写真をアップロードしてください。");
-		}
-
 		try {
 			//写真を含めて保存
 			memberService.saveWithPhoto(member, photo);
 		} catch (IOException e) {
-			//リダイレクト時に一度だけ表示するメッセージ
-			redirectAttributes.addFlashAttribute("errorMessage", "写真のアップロードに失敗しました。");
-			return "redirect:/admin/members/new";
+			bindingResult.rejectValue("photo", "error.members", "写真のアップロードに失敗しました。");
+			return "admin/members/form";
 		}
 
 		//リダイレクト時に一度だけ表示するメッセージ

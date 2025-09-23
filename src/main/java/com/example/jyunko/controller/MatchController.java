@@ -73,22 +73,21 @@ public class MatchController {
 	public String createMatch(@ModelAttribute @Valid Match match, BindingResult bindingResult,
 			@RequestParam("photo") MultipartFile photo,
 			RedirectAttributes redirectAttributes) {
-		//エラーチェック
-		if (bindingResult.hasErrors()) {
-			//リダイレクト時に一度だけ表示するメッセージ
-			redirectAttributes.addFlashAttribute("errorMessage", "エラーが発生しました。");
-			return "admin/matches/form";
-		}
-
+		//写真がアップロードされているかチェック
 		if (photo.isEmpty()) {
 			bindingResult.rejectValue("photo", "error.matches", "写真をアップロードしてください。");
+		}
+
+		//エラーチェック
+		if (bindingResult.hasErrors()) {
+			return "admin/matches/form";
 		}
 
 		try {
 			matchService.saveWithPhoto(match, photo);
 		} catch (IOException e) {
 			redirectAttributes.addFlashAttribute("errorMessage", "写真のアップロードに失敗しました。");
-			return "redirect:/admin/matches/new";
+			return "admin/matches/form";
 		}
 
 		//リダイレクト時に一度だけ表示するメッセージ
