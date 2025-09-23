@@ -1,5 +1,6 @@
 package com.example.jyunko.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import jakarta.validation.Valid;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.jyunko.entity.Match;
@@ -60,6 +63,7 @@ public class MatchController {
 	//新規試合結果をデータベースに保存
 	@PostMapping("/admin/matches")
 	public String createMatch(@ModelAttribute @Valid Match match, BindingResult bindingResult,
+			@RequestParam("photo") MultipartFile photo,
 			RedirectAttributes redirectAttributes) {
 		//エラーチェック
 		if (bindingResult.hasErrors()) {
@@ -67,8 +71,18 @@ public class MatchController {
 			redirectAttributes.addFlashAttribute("errorMessage", "エラーが発生しました。");
 			return "admin/matches/form";
 		}
-		//データベースに保存
-		matchService.save(match);
+
+		if (photo.isEmpty()) {
+			bindingResult.rejectValue("photo", "error.matches", "写真をアップロードしてください。");
+		}
+
+		try {
+			matchService.saveWithPhoto(match, photo);
+		} catch (IOException e) {
+			redirectAttributes.addFlashAttribute("errorMessage", "写真のアップロードに失敗しました。");
+			return "redirect:/admin/matches/new";
+		}
+
 		//リダイレクト時に一度だけ表示するメッセージ
 		redirectAttributes.addFlashAttribute("successMessage", "試合結果を登録しました。");
 		return "redirect:/admin/matches";
@@ -86,7 +100,9 @@ public class MatchController {
 
 	//試合結果を更新
 	@PostMapping("/admin/matches/{id}/edit")
-	public String updateMatch(@PathVariable Integer id, @ModelAttribute @Valid Match match, BindingResult bindingResult,
+	public String updateMatch(@PathVariable Integer id,
+			@ModelAttribute @Valid Match match, BindingResult bindingResult,
+			@RequestParam("photo") MultipartFile photo,
 			RedirectAttributes redirectAttributes) {
 		//エラーチェック
 		if (bindingResult.hasErrors()) {
@@ -94,11 +110,27 @@ public class MatchController {
 			redirectAttributes.addFlashAttribute("errorMessage", "エラーが発生しました。");
 			return "admin/matches";
 		}
+
+		//写真がアップロードされているかチェック
+		if (photo.isEmpty()) {
+			bindingResult.rejectValue("photo", "error.matches", "写真をアップロードしてください。");
+		}
+
 		//IDを設定してデータベースに保存
 		match.setId(id);
-		matchService.save(match);
+
+		try {
+			//写真を含む試合結果を保存
+			matchService.saveWithPhoto(match, photo);
+		} catch (IOException e) {
+			//写真のアップロードに失敗した場合、エラーメッセージを設定してフォームに戻る
+			redirectAttributes.addFlashAttribute("errorMessage", "写真のアップロードに失敗しました。");
+			return "redirect:/admin/matches/form";
+		}
+
 		//リダイレクト時に一度だけ表示するメッセージ
 		redirectAttributes.addFlashAttribute("successMessage", "試合結果を更新しました。");
+		//試合結果一覧画面にリダイレクト
 		return "redirect:/admin/matches";
 	}
 

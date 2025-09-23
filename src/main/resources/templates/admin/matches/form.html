@@ -46,6 +46,8 @@
 				<div class="mb-3">
 					<label for="photo" class="form-label">写真</label>
 					<input type="file" id="photo" name="photo" class="form-control" th:field="*{photo}" required>
+					
+					<div th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}" class="text-danger small"></div>
 				</div>
 				
 				<button type="submit" class="btn btn-primary" th:text="${match.id == null} ? '登録' : '編集'"></button>
