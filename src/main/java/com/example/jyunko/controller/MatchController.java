@@ -116,12 +116,7 @@ public class MatchController {
 		if (bindingResult.hasErrors()) {
 			//リダイレクト時に一度だけ表示するメッセージ
 			redirectAttributes.addFlashAttribute("errorMessage", "エラーが発生しました。");
-			return "admin/matches";
-		}
-
-		//写真がアップロードされているかチェック
-		if (photo.isEmpty()) {
-			bindingResult.rejectValue("photo", "error.matches", "写真をアップロードしてください。");
+			return "admin/matches/form";
 		}
 
 		//IDを設定してデータベースに保存
@@ -133,7 +128,7 @@ public class MatchController {
 		} catch (IOException e) {
 			//写真のアップロードに失敗した場合、エラーメッセージを設定してフォームに戻る
 			redirectAttributes.addFlashAttribute("errorMessage", "写真のアップロードに失敗しました。");
-			return "redirect:/admin/matches/form";
+			return "admin/matches/form";
 		}
 
 		//リダイレクト時に一度だけ表示するメッセージ

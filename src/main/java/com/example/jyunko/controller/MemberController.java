@@ -134,11 +134,6 @@ public class MemberController {
 			return "admin/members/form";
 		}
 
-		//写真がアップロードされているかチェック
-		if (photo.isEmpty()) {
-			bindingResult.rejectValue("photo", "error.members", "写真をアップロードしてください。");
-		}
-
 		//idをセットしてデータベースに保存
 		member.setId(id);
 
