@@ -10,7 +10,7 @@
 			<h1 th:unless="${match.id == null}">試合 編集</h1>
 			
 			<form th:action="${match.id == null} ? @{/admin/matches} : @{/admin/matches/{id}/edit(id=${match.id})}"
-				method="post" th:object="${match}">
+				method="post" th:object="${match}" enctype="multipart/form-data">
 				<div class="mb-3">
 					<label for="opponent" class="form-label">対戦相手</label>
 					<input type="text" id="opponent" class="form-control" th:field="*{opponent}" required>
