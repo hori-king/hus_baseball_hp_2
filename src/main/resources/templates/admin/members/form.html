@@ -4,7 +4,7 @@
 <body>
 	<div th:replace="~{fragments/admin_header :: common_admin_header}"></div>
 	
-	<main class="mt-5 mb-5">
+	<main class="mt-5">
 		<div class="container">
 			<h1 th:if="${member.id == null}">部員 新規登録</h1>
 			<h1 th:unless="${member.id == null}">部員 編集</h1>
