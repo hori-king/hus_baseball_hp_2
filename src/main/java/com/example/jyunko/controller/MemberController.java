@@ -27,6 +27,7 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 
+	//photoフィールドのバインドを無効化
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.setDisallowedFields("photo");
