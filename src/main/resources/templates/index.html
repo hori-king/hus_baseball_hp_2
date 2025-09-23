@@ -4,7 +4,7 @@
 <body>
 	<div th:replace="~{fragments/header :: common_header}"></div>
 	
-	<main class="mt-5 mb-5">
+	<main class="mt-5">
 		<div class="text-center mb-5">
 			<!--管理者ページからログアウトした時に表示-->
 			<div th:if="${param.logout}" class="alert alert-success" role="alert">
@@ -75,7 +75,7 @@
 					
 					<div class="card shadow-sm card-hover h-100">
 						<a th:href="@{/matches/{id}(id=${match.id})}" class="text-decoration-none text-dark">
-							<img th:if="@{match.photo}" th:src="@{${match.photo}}" class="card-img-top" alt="試合写真">
+							<img th:if="@{match.photo}" th:src="@{${match.photo}}" class="match_img card-img-top" alt="試合写真">
 							<div class="card-body">
 								<h3 class="card-title text-center" th:text="'対戦相手： ' + ${match.opponent}">対戦相手</h3>
 								<div class="d-flex justify-content-center align-items-center fs-3">

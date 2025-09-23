@@ -18,7 +18,7 @@
 				<div th:each="match : ${matchList}" class="col">
 					<a th:href="@{/matches/{id}(id=${match.id})}" class="text-decoration-none text-dark">
 						<div class="card shadow-sm card-hover h-100">
-							<img th:if="${match.photo}" th:src="@{${match.photo}}" class="card-img-top" alt="試合写真">
+							<img th:if="${match.photo}" th:src="@{${match.photo}}" class="match_img card-img-top" alt="試合写真">
 							
 							<div class="card-body">
 								<h3 class="card-title text-center" th:text="'対戦相手： '+${match.opponent}"></h3>
