@@ -40,6 +40,7 @@
 								<input type="hidden" name="status" value="0">
 								<button type of="submit" class="btn btn-sm btn-danger" th:if="*{status != 0}">未対応にする</button>
 							</form>
+							<a th:href="@{/admin/inquiries/{id}(id=*{id})}" class="btn btn-sm btn-outline-info">詳細</a>
 							<form th:action="@{/admin/inquiries/{id}/delete(id=*{id})}" method="post" class="d-inline ps-5"
 								onsubmit="return confirm('本当に削除しますか？')">
 								<button type="submit" class="btn btn-sm btn-danger">削除</button>

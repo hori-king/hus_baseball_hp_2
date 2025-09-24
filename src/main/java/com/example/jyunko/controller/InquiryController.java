@@ -45,6 +45,15 @@ public class InquiryController {
 		return "admin/inquiries/list";
 	}
 
+	// 管理者向け問い合わせ詳細表示
+	@GetMapping("/admin/inquiries/{id}")
+	public String showInquiryDetail(@PathVariable Integer id, Model model) {
+		// IDで問い合わせを検索
+		Inquiry inquiry = inquiryService.findById(id);
+		model.addAttribute("inquiry", inquiry);
+		return "admin/inquiries/inquiry_detail";
+	}
+
 	// 管理者向け問い合わせステータス更新処理
 	@PostMapping("/admin/inquiries/{id}/update-status")
 	public String updateInquiryStatus(@PathVariable Integer id, @RequestParam Integer status) {
