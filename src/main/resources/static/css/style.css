@@ -49,11 +49,16 @@ main{
 }
 
 .col-id{width: 5%;}
-.col-name{width: 15%;}
-.col-subject{width: 25%;}
+.col-name{width: 10%;}
+.col-subject{width: 30%;}
 .col-date{width: 15%;}
 .col-status{width: 10%;}
 .col-operation{width: 30%;}
+
+
+.inquiry_content{
+	white-space: pre-wrap;
+}
 
 .footer_bg{
 	background-image: linear-gradient(
