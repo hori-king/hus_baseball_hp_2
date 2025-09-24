@@ -9,12 +9,12 @@
 			<h1 class="mb-4">お問い合わせ一覧</h1>
 			<table class="table table-striped table-hover">
 				<thead class="table-dark">
-					<th scope="col">ID</th>
-					<th scope="col">氏名</th>
-					<th scope="col">件名</th>
-					<th scope="col">登録日時</th>
-					<th scope="col">ステータス</th>
-					<th scope="col">操作</th>
+					<th scope="col" class="col-id">ID</th>
+					<th scope="col" class="col-name">氏名</th>
+					<th scope="col" class="col-subject">件名</th>
+					<th scope="col" class="col-date">登録日時</th>
+					<th scope="col" class="col-status">ステータス</th>
+					<th scope="col" class="col-operation">操作</th>
 				</thead>
 				<tbody>
 					<tr th:each="inquiry : ${inquiryList}" th:object="${inquiry}">

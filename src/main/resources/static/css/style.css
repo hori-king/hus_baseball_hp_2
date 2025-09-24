@@ -48,6 +48,13 @@ main{
 		  background-position: center;
 }
 
+.col-id{width: 5%;}
+.col-name{width: 15%;}
+.col-subject{width: 25%;}
+.col-date{width: 15%;}
+.col-status{width: 10%;}
+.col-operation{width: 30%;}
+
 .footer_bg{
 	background-image: linear-gradient(
 		rgba(0, 0, 0, 0.6),
