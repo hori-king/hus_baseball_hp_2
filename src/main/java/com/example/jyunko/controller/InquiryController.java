@@ -46,7 +46,7 @@ public class InquiryController {
 	}
 
 	// 管理者向け問い合わせステータス更新処理
-	@PostMapping("/admin/inquires/{id}/update-status")
+	@PostMapping("/admin/inquiries/{id}/update-status")
 	public String updateInquiryStatus(@PathVariable Integer id, @RequestParam Integer status) {
 		// ステータスを更新
 		inquiryService.updateStatus(id, status);

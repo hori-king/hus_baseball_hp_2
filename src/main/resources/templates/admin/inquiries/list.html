@@ -28,19 +28,20 @@
 							<span th:if="*{status == 2}" class="badge bg-success">対応済み</span>
 						</td>
 						<td class="text-nowrap">
-							<form th:action="@{/admin/inquires/{id}/update-status(id=*{id})}" method="post" class="d-inline">
+							<form th:action="@{/admin/inquiries/{id}/update-status(id=*{id})}" method="post" class="d-inline pe-3">
 								<input type="hidden" name="status" value="2">
 								<button type of="submit" class="btn btn-sm btn-success" th:if="*{status != 2}">対応済みにする</button>
 							</form>
-							<form th:action="@{/admin/inquires/{id}/update-status(id=*{id})}" method="post" class="d-inline">
+							<form th:action="@{/admin/inquiries/{id}/update-status(id=*{id})}" method="post" class="d-inline pe-3">
 								<input type="hidden" name="status" value="1">
 								<button type of="submit" class="btn btn-sm btn-warning" th:if="*{status != 1}">対応中にする</button>
 							</form>
-							<form th:action="@{/admin/inquires/{id}/update-status(id=*{id})}" method="post" class="d-inline">
+							<form th:action="@{/admin/inquiries/{id}/update-status(id=*{id})}" method="post" class="d-inline">
 								<input type="hidden" name="status" value="0">
 								<button type of="submit" class="btn btn-sm btn-danger" th:if="*{status != 0}">未対応にする</button>
 							</form>
-							<form th:action="@{/admin/inquiries/{id}/delete(id=*{id})}" method="post" class="d-inline ps-3" onsubmit="return confirm('本当に削除しますか？')">
+							<form th:action="@{/admin/inquiries/{id}/delete(id=*{id})}" method="post" class="d-inline ps-5"
+								onsubmit="return confirm('本当に削除しますか？')">
 								<button type="submit" class="btn btn-sm btn-danger">削除</button>
 							</form>
 						</td>
