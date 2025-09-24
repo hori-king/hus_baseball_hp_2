@@ -57,8 +57,26 @@ main{
 .news_operation{width: 10%;}
 
 /*部員のテーブル*/
+.member_name{width: 8%;}
+.member_grade{width: 5%;}
+.member_number{width: 5%;}
+.member_position{width: 7%;}
+.member_almaMater{width: 18%;}
+.member_faculty{width: 10%;}
+.member_department{width: 12%;}
+.member_photo{width: 25%;}
+.member_operation{width: 10%;}
 
 /*試合のテーブル*/
+.match_name{width: 10%;}
+.match_date{width: 10%;}
+.match_venue{width: 10%;}
+.match_our{width: 5%;}
+.match_opponent{width: 5%;}
+.match_result{width: 7%;}
+.match_comment{width: 23%;}
+.match_photo{width: 20%;}
+.match_operation{width: 10%;}
 
 /*お問い合わせのテーブル*/
 .inquiry_id{width: 5%;}
