@@ -1,5 +1,6 @@
 package com.example.jyunko.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import jakarta.validation.Valid;
@@ -8,10 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.jyunko.entity.News;
@@ -19,8 +24,19 @@ import com.example.jyunko.service.NewsService;
 
 @Controller
 public class NewsController {
+
+	private final HomeController homeController;
 	@Autowired
 	private NewsService newsService;
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.setDisallowedFields("photo");
+	}
+
+	NewsController(HomeController homeController) {
+		this.homeController = homeController;
+	}
 
 	//お知らせ一覧を表示
 	@GetMapping("/news")
@@ -63,13 +79,26 @@ public class NewsController {
 	//新規お知らせをデータベースに保存
 	@PostMapping("/admin/news")
 	public String createNews(@ModelAttribute @Valid News news, BindingResult bindingResult,
+			@RequestParam("photo") MultipartFile photo,
 			RedirectAttributes redirectAttributes) {
+		//写真がアップロードされていない場合、エラーを追加
+		if (photo.isEmpty()) {
+			bindingResult.rejectValue("photo", "error.news", "写真をアップロードしてください。");
+		}
+
 		//エラーチェック
 		if (bindingResult.hasErrors()) {
 			return "admin/news/form";
 		}
-		//データベースに保存
-		newsService.save(news);
+
+		try {
+			//写真を含めて保存
+			newsService.saveWithPhoto(news, photo);
+		} catch (IOException e) {
+			bindingResult.rejectValue("photo", "error.news", "写真のアップロードに失敗しました。");
+			return "admin/news/form";
+		}
+
 		//リダイレクト時に一度だけ表示するメッセージ
 		redirectAttributes.addFlashAttribute("successMessage", "お知らせを登録しました。");
 		return "redirect:/admin/news";
@@ -88,6 +117,7 @@ public class NewsController {
 	//お知らせを更新
 	@PostMapping("/admin/news/{id}/edit")
 	public String updateNews(@PathVariable Integer id, @ModelAttribute News news,
+			@RequestParam("photo") MultipartFile photo,
 			@Valid BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		//エラーチェック
 		if (bindingResult.hasErrors()) {
@@ -97,8 +127,15 @@ public class NewsController {
 		}
 		//IDをセット
 		news.setId(id);
-		//データベースに保存
-		newsService.save(news);
+
+		try {
+			//写真を含めて保存
+			newsService.saveWithPhoto(news, photo);
+		} catch (IOException e) {
+			bindingResult.rejectValue("photo", "error.news", "写真のアップロードに失敗しました。");
+			return "admin/news/form";
+		}
+
 		//リダイレクト時に一度だけ表示するメッセージ
 		redirectAttributes.addFlashAttribute("successMessage", "お知らせを更新しました。");
 
