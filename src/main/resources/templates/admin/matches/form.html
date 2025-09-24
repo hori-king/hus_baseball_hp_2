@@ -37,7 +37,10 @@
 				</div>
 				<div class="mb-3">
 					<label for="result" class="form-label">試合結果</label>
-					<input type="text" id="result" class="form-control" th:field="*{result}" required>
+					<select id="result" class="form-select" th:field="*{result}">
+						<option value="">選択してください</option>
+						<option th:each="result : ${results}" th:value="${result}" th:text="${result}"></option>
+					</select>
 				</div>
 				<div class="mb-3">
 					<label for="comment" class="form-label">コメント</label>

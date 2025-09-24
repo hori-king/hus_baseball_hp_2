@@ -65,6 +65,8 @@ public class MatchController {
 	public String matchForm(Model model) {
 		//空のMatchオブジェクトをモデルにセット
 		model.addAttribute("match", new Match());
+		//試合結果の選択肢をモデルにセット
+		model.addAttribute("results", List.of("勝利", "敗北", "引き分け"));
 		return "admin/matches/form";
 	}
 
@@ -102,6 +104,8 @@ public class MatchController {
 		Match match = matchService.findById(id);
 		//モデルにセット
 		model.addAttribute("match", match);
+		//試合結果の選択肢をモデルにセット
+		model.addAttribute("results", List.of("勝利", "敗北", "引き分け"));
 		return "admin/matches/form";
 	}
 
