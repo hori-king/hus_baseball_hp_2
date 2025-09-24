@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: common_head('お問い合わせ詳細')}"></head>
+<body>
+	<div th:replace="~{fragments/admin_header :: common_admin_header}"></div>
+	
+	<main>
+		<div class="container mt-5">
+			<h1 class="text-center mb-5">お問い合わせ詳細</h1>
+			
+			<article th:object="${inquiry}" class="card">
+				<div class="card-header text-center" th:text="*{subject}">件名</div>
+				<div class="card-body">
+					<dl class="row">
+						<dt class="col-sm-3 mb-3">ID</dt>
+						<dd class="col-sm-9" th:text="*{id}"></dd>
+						
+						<dt class="col-sm-3 mb-3">登録日時</dt>
+						<dd class="col-sm-9" th:text="*{#temporals.format(createdAt, 'yyyy年MM月dd日 HH:mm')}"></dd>
+						
+						<dt class="col-sm-3 mb-3">氏名</dt>
+						<dd class="col-sm-9" th:text="*{name}"></dd>
+						
+						<dt class="col-sm-3 mb-3">メールアドレス</dt>
+						<dd class="col-sm-9" th:text="*{email}"></dd>
+						
+						<dt class="col-sm-3 mb-3">ステータス</dt>
+						<dd class="col-sm-9">
+							<span th:if="*{status == 0}" class="badge bg-danger">未対応</span>
+							<span th:if="*{status == 1}" class="badge bg-warning">対応中</span>
+							<span th:if="*{status == 2}" class="badge bg-success">対応済み</span>
+						</dd>
+						
+						<hr>
+					</dl>
+					
+					<h5 class="card-title mb-3">質問内容</h5>
+					<p class="card-text bg-light p-3 rounded" th:text="*{content}" style="white-space: pre-wrap;"></p>
+				</div>
+			</article>
+			
+			<div class="mt-4 text-end">
+				<a th:href="@{/admin/inquiries}" class="btn btn-secondary">一覧に戻る</a>
+			</div>
+			
+		</div>
+	</main>
+	
+	<div th:replace="~{fragments/admin_footer :: common_admin_footer}"></div>
+</body>
+</html>
