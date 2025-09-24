@@ -73,6 +73,9 @@ public class NewsController {
 	public String NewsForm(Model model) {
 		//空のNewsオブジェクトをモデルにセット
 		model.addAttribute("news", new News());
+		//カテゴリーの選択肢をモデルにセット
+		model.addAttribute("categories", List.of("お知らせ", "イベント", "その他"));
+
 		return "admin/news/form";
 	}
 
@@ -107,6 +110,8 @@ public class NewsController {
 	//編集フォームを表示
 	@GetMapping("/admin/news/{id}/edit")
 	public String editNewsForm(@PathVariable Integer id, Model model) {
+		//カテゴリーの選択肢をモデルにセット
+		model.addAttribute("categories", List.of("お知らせ", "イベント", "その他"));
 		//idに該当するお知らせをデータベースから取得
 		News news = newsService.findById(id);
 		//モデルにセット

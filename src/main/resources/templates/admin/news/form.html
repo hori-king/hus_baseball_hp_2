@@ -22,7 +22,10 @@
 				</div>
 				<div class="mb-3">
 					<label for="category" class="form-label">カテゴリ</label>
-					<input type="text" id="category" class="form-control" th:field="*{category}" required>
+					<select id="category" class="form-select" th:field="*{category}">
+						<option value="">選択してください</option>
+						<option th:each="category : ${categories}" th:value="${category}" th:text="${category}"></option>
+					</select>
 				</div>
 				<div class="mb-3">
 					<label for="content" class="form-label">内容</label>
