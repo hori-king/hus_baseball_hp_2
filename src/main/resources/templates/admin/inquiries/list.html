@@ -36,7 +36,7 @@
 								<input type="hidden" name="status" value="1">
 								<button type of="submit" class="btn btn-sm btn-warning" th:if="*{status != 1}">対応中にする</button>
 							</form>
-							<form th:action="@{/admin/inquiries/{id}/update-status(id=*{id})}" method="post" class="d-inline">
+							<form th:action="@{/admin/inquiries/{id}/update-status(id=*{id})}" method="post" class="d-inline pe-3">
 								<input type="hidden" name="status" value="0">
 								<button type of="submit" class="btn btn-sm btn-danger" th:if="*{status != 0}">未対応にする</button>
 							</form>
