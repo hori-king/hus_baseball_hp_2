@@ -48,12 +48,25 @@ main{
 		  background-position: center;
 }
 
-.col-id{width: 5%;}
-.col-name{width: 10%;}
-.col-subject{width: 30%;}
-.col-date{width: 15%;}
-.col-status{width: 10%;}
-.col-operation{width: 30%;}
+/*お知らせのテーブル*/
+.news_id{width: 5%;}
+.news_date{width: 10%;}
+.news_title{width: 20%;}
+.news_category{width: 10%;}
+.news_photo{width: 45%;}
+.news_operation{width: 10%;}
+
+/*部員のテーブル*/
+
+/*試合のテーブル*/
+
+/*お問い合わせのテーブル*/
+.inquiry_id{width: 5%;}
+.inquiry_name{width: 10%;}
+.inquiry_subject{width: 30%;}
+.inquiry_date{width: 15%;}
+.inquiry_status{width: 10%;}
+.inquiry_operation{width: 30%;}
 
 
 .inquiry_content{
