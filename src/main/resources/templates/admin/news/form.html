@@ -9,7 +9,8 @@
 			<h1 th:if="${news.id == null}">お知らせ 新規登録</h1>
 			<h1 th:unless="${news.id == null}">お知らせ 編集</h1>
 			
-			<form th:action="${news.id == null} ? @{/admin/news} : @{/admin/news/{id}/edit(id=${news.id})}" th:object="${news}" method="post">
+			<form th:action="${news.id == null} ? @{/admin/news} : @{/admin/news/{id}/edit(id=${news.id})}"
+				th:object="${news}" method="post" enctype="multipart/form-data">
 				<input type="hidden" th:if="${news.id == null}" th:field="*{id}">
 				<div class="mb-3">
 					<label for="title" class="form-label">タイトル</label>
@@ -29,7 +30,9 @@
 				</div>
 				<div class="mb-3">
 					<label for="photo" class="form-label">写真</label>
-					<input type="text" id="photo" class="form-control" th:field="*{photo}" required>
+					<input type="file" id="photo" name="photo" class="form-control" required>
+					
+					<div th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}" class="text-danger small"></div>
 				</div>
 
 				<button type="submit" class="btn btn-primary" th:text="${news.id == null} ? '登録' : '編集'">登録</button>
@@ -39,6 +42,6 @@
 		</div>
 	</main>
 	
-	<div th:reprace="~{fragments/admin_footer :: common_admin_footer}"></div>
+	<div th:replace="~{fragments/admin_footer :: common_admin_footer}"></div>
 </body>
 </html>
