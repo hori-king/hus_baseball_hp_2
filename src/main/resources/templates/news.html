@@ -14,13 +14,14 @@
 					
 					<a th:href="@{/news/{id}(id=${item.id})}" class="text-decoration-none text-dark">
 						<div class="card h-100 shadow-sm card-hover">
-							<img th:if="${item.photo}" th:src="@{${item.photo}}" class="card-img-top" alt="ニュース写真" />
+							<img th:if="${item.photo}" th:src="@{${item.photo}}" class="news_img card-img-top" alt="ニュース写真" />
 							<div class="card-body">
-								<h5 th:text="${item.title}" class="card-title">ニュース</h5>
+								<h4 th:text="${item.title}" class="card-title">ニュース</h4>
 							</div>
 							<div class="card-footer">
 								<small th:text="${#temporals.format(item.postedDate, 'yyyy-MM-dd')}" class="text-body-secondary">
-								Last updated 3 minsago</small>
+									Last updated 3 minsago
+								</small>
 							</div>
 						</div>
 					</a>
