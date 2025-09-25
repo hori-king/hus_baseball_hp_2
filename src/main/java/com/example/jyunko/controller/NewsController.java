@@ -24,18 +24,12 @@ import com.example.jyunko.service.NewsService;
 
 @Controller
 public class NewsController {
-
-	private final HomeController homeController;
 	@Autowired
 	private NewsService newsService;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.setDisallowedFields("photo");
-	}
-
-	NewsController(HomeController homeController) {
-		this.homeController = homeController;
 	}
 
 	//お知らせ一覧を表示
@@ -93,7 +87,7 @@ public class NewsController {
 	@PostMapping("/admin/news")
 	public String createNews(@ModelAttribute @Valid News news, BindingResult bindingResult,
 			@RequestParam("photo") MultipartFile photo,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes, Model model) {
 		//写真がアップロードされていない場合、エラーを追加
 		if (photo.isEmpty()) {
 			bindingResult.rejectValue("photo", "error.news", "写真をアップロードしてください。");
@@ -101,6 +95,8 @@ public class NewsController {
 
 		//エラーチェック
 		if (bindingResult.hasErrors()) {
+			//カテゴリーの選択肢をモデルにセット
+			model.addAttribute("categories", List.of("お知らせ", "イベント", "その他"));
 			return "admin/news/form";
 		}
 
@@ -133,11 +129,13 @@ public class NewsController {
 	@PostMapping("/admin/news/{id}/edit")
 	public String updateNews(@PathVariable Integer id, @ModelAttribute News news,
 			@RequestParam("photo") MultipartFile photo,
-			@Valid BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+			@Valid BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
 		//エラーチェック
 		if (bindingResult.hasErrors()) {
 			//リダイレクト時に一度だけ表示するメッセージ
 			redirectAttributes.addFlashAttribute("errorMessage", "エラーが発生しました。");
+			//カテゴリーの選択肢をモデルにセット
+			model.addAttribute("categories", List.of("お知らせ", "イベント", "その他"));
 			return "redirect:/admin/news";
 		}
 		//IDをセット
