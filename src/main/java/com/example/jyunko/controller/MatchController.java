@@ -89,7 +89,7 @@ public class MatchController {
 	@PostMapping("/admin/matches")
 	public String createMatch(@ModelAttribute @Valid Match match, BindingResult bindingResult,
 			@RequestParam("photo") MultipartFile photo,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes, Model model) {
 		//写真がアップロードされているかチェック
 		if (photo.isEmpty()) {
 			bindingResult.rejectValue("photo", "error.matches", "写真をアップロードしてください。");
@@ -97,6 +97,9 @@ public class MatchController {
 
 		//エラーチェック
 		if (bindingResult.hasErrors()) {
+			//試合結果の選択肢をモデルにセット
+			model.addAttribute("results", List.of("勝利", "敗北", "引き分け"));
+
 			return "admin/matches/form";
 		}
 
@@ -129,11 +132,13 @@ public class MatchController {
 	public String updateMatch(@PathVariable Integer id,
 			@ModelAttribute @Valid Match match, BindingResult bindingResult,
 			@RequestParam("photo") MultipartFile photo,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes, Model model) {
 		//エラーチェック
 		if (bindingResult.hasErrors()) {
 			//リダイレクト時に一度だけ表示するメッセージ
 			redirectAttributes.addFlashAttribute("errorMessage", "エラーが発生しました。");
+			//試合結果の選択肢をモデルにセット
+			model.addAttribute("results", List.of("勝利", "敗北", "引き分け"));
 			return "admin/matches/form";
 		}
 
