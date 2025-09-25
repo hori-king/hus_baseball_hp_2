@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 	
-<head th:replace="~{fragments/head :: common_head('試合結果', '/match/' + ${match.id})}"></head>
+<head th:replace="~{fragments/head :: common_head('試合結果', '/match/' + ${match.id},
+	${match.opponent} + 'との試合結果の詳細です、スコアやコメントなどを掲載しています。')}">
+</head>
 
 <body>
 	<div th:replace="~{fragments/header :: common_header}"></div>

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 	
-<head th:replace="~{fragments/head :: common_head('部員紹介', '/members')}"></head>
+<head th:replace="~{fragments/head :: common_head('部員紹介', '/members',
+	'北海道科学大学準硬式野球部で活躍する部員たちを紹介しています。')}">
+</head>
 
 <body>
 	<div th:replace="~{fragments/header :: common_header}"></div>

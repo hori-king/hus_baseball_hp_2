@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
-<head th:replace="~{fragments/head :: common_head('お知らせ詳細', '/news/' + ${newsItem.id})}"></head>
+<head th:replace="~{fragments/head :: common_head('お知らせ詳細', '/news/' + ${newsItem.id}, ${newsItem.content})}"></head>
 <body>
 	<div th:replace="~{fragments/header :: common_header}"></div>
 	

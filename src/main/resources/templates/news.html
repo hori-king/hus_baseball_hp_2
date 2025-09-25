@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 
-<head th:replace="~{fragments/head :: common_head('お知らせ一覧', '/news')}"></head>
+<head th:replace="~{fragments/head :: common_head('お知らせ一覧', '/news',
+	'北海道科学大学準硬式野球部の最新のお知らせ一覧です。試合の告知やイベントの案内などを掲載しています。')}">
+</head>
 
 <body>
 	<div th:replace="~{fragments/header :: common_header}"></div>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
-<head th:replace="~{fragments/head :: common_head('お問い合わせ詳細', '/inquiries/' + ${inquiry.id})}"></head>
+<head th:replace="~{fragments/head :: common_head('お問い合わせ詳細', '/inquiries/' + ${inquiry.id},
+	'お問い合わせの詳細ページです。')}">
+</head>
 <body>
 	<div th:replace="~{fragments/admin_header :: common_admin_header}"></div>
 	

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
-<head th:replace="~{fragments/head :: common_head('試合管理', '/matches/' + ${match.id})}"></head>
+<head th:replace="~{fragments/head :: common_head('試合管理', '/matches/' + ${match.id},
+	'試合結果の登録・編集フォームです。')}">
+</head>
 <body>
 	<div th:replace="~{fragments/admin_header :: common_admin_header}"></div>
 	

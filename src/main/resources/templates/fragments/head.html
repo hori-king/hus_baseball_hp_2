@@ -1,7 +1,8 @@
-<head th:fragment="common_head (title, canonicalPath)">
+<head th:fragment="common_head (title, canonicalPath, description)">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title th:text="${title}">ページタイトル</title>
+	<meta name="description" th:attr="content=${description}"/>
 	<link rel="canonical" th:href="@{'https://hus-baseball.com' + ${canonicalPath}}" />
 	<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css"/>
 	<link
