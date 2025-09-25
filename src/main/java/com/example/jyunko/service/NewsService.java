@@ -22,7 +22,7 @@ public class NewsService {
 
 	//全件取得
 	public List<News> findAll() {
-		return newsRepository.findAll();
+		return newsRepository.findByOrderByPostedDateDesc();
 	}
 
 	//ID検索

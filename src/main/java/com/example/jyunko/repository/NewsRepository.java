@@ -12,4 +12,7 @@ import com.example.jyunko.entity.News;
 public interface NewsRepository extends JpaRepository<News, Integer> {
 	// 最新のニュースを3件取得するメソッド
 	List<News> findTop3ByOrderByPostedDateDesc();
+
+	// 投稿日の降順で全てのニュースを取得するメソッド
+	List<News> findByOrderByPostedDateDesc();
 }
