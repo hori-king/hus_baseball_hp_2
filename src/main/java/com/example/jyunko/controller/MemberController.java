@@ -76,7 +76,7 @@ public class MemberController {
 	@PostMapping("/admin/members")
 	public String createMember(@ModelAttribute @Valid Member member, BindingResult bindingResult,
 			@RequestParam("photo") MultipartFile photo,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes, Model model) {
 		//写真がアップロードされているかチェック
 		if (photo.isEmpty()) {
 			bindingResult.rejectValue("photo", "error.members", "写真をアップロードしてください。");
@@ -84,6 +84,14 @@ public class MemberController {
 
 		//エラーチェック
 		if (bindingResult.hasErrors()) {
+			//ポジションの選択肢をモデルにセット
+			model.addAttribute("positions", List.of("投手", "捕手", "内野手", "外野手", "マネージャー"));
+			//学部の選択肢をモデルにセット
+			model.addAttribute("faculties", List.of("工学部", "情報科学部", "薬学部", "保健医療学部", "未来デザイン学部"));
+			//学科の選択肢をモデルにセット
+			model.addAttribute("departments", List.of("機械工学科", "情報工学科", "電気電子工学科", "建築学科", "都市環境学科",
+					"情報科学科", "薬学科", "看護学科", "理学療法学科", "臨床工学科", "診療放射線学科",
+					"メディアデザイン学科", "人間社会学科"));
 			//フォームに戻る
 			return "admin/members/form";
 		}
@@ -92,6 +100,14 @@ public class MemberController {
 			//写真を含めて保存
 			memberService.saveWithPhoto(member, photo);
 		} catch (IOException e) {
+			//ポジションの選択肢をモデルにセット
+			model.addAttribute("positions", List.of("投手", "捕手", "内野手", "外野手", "マネージャー"));
+			//学部の選択肢をモデルにセット
+			model.addAttribute("faculties", List.of("工学部", "情報科学部", "薬学部", "保健医療学部", "未来デザイン学部"));
+			//学科の選択肢をモデルにセット
+			model.addAttribute("departments", List.of("機械工学科", "情報工学科", "電気電子工学科", "建築学科", "都市環境学科",
+					"情報科学科", "薬学科", "看護学科", "理学療法学科", "臨床工学科", "診療放射線学科",
+					"メディアデザイン学科", "人間社会学科"));
 			bindingResult.rejectValue("photo", "error.members", "写真のアップロードに失敗しました。");
 			return "admin/members/form";
 		}
@@ -126,9 +142,17 @@ public class MemberController {
 	public String editMember(@PathVariable Integer id,
 			@ModelAttribute @Valid Member member, BindingResult bindingResult,
 			@RequestParam("photo") MultipartFile photo,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes, Model model) {
 		//エラーチェック
 		if (bindingResult.hasErrors()) {
+			//ポジションの選択肢をモデルにセット
+			model.addAttribute("positions", List.of("投手", "捕手", "内野手", "外野手", "マネージャー"));
+			//学部の選択肢をモデルにセット
+			model.addAttribute("faculties", List.of("工学部", "情報科学部", "薬学部", "保健医療学部", "未来デザイン学部"));
+			//学科の選択肢をモデルにセット
+			model.addAttribute("departments", List.of("機械工学科", "情報工学科", "電気電子工学科", "建築学科", "都市環境学科",
+					"情報科学科", "薬学科", "看護学科", "理学療法学科", "臨床工学科", "診療放射線学科",
+					"メディアデザイン学科", "人間社会学科"));
 			//フォームに戻る
 			return "admin/members/form";
 		}
@@ -140,6 +164,14 @@ public class MemberController {
 			//写真を含めて保存
 			memberService.saveWithPhoto(member, photo);
 		} catch (IOException e) {
+			//ポジションの選択肢をモデルにセット
+			model.addAttribute("positions", List.of("投手", "捕手", "内野手", "外野手", "マネージャー"));
+			//学部の選択肢をモデルにセット
+			model.addAttribute("faculties", List.of("工学部", "情報科学部", "薬学部", "保健医療学部", "未来デザイン学部"));
+			//学科の選択肢をモデルにセット
+			model.addAttribute("departments", List.of("機械工学科", "情報工学科", "電気電子工学科", "建築学科", "都市環境学科",
+					"情報科学科", "薬学科", "看護学科", "理学療法学科", "臨床工学科", "診療放射線学科",
+					"メディアデザイン学科", "人間社会学科"));
 			//リダイレクト時に一度だけ表示するメッセージ
 			redirectAttributes.addFlashAttribute("errorMessage", "写真のアップロードに失敗しました。");
 			return "redirect:/admin/members/form";
