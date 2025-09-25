@@ -13,5 +13,6 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 	// 最新の試合を3件取得するメソッド
 	List<Match> findTop3ByOrderByMatchDateDesc();
 
+	// 試合日の降順で全ての試合を取得するメソッド
 	List<Match> findByOrderByMatchDateDesc();
 }
