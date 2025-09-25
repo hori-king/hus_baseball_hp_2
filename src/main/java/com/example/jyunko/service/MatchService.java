@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,6 +23,20 @@ public class MatchService {
 	//全件取得
 	public List<Match> findAll() {
 		return matchRepository.findByOrderByMatchDateDesc();
+	}
+
+	//年リスト取得
+	public List<Integer> findDistinctYears() {
+		return matchRepository.findDistinctYears();
+	}
+
+	//年検索
+	public List<Match> findByYear(int year) {
+		// 指定された年の開始日と終了日を設定
+		LocalDate startDate = LocalDate.of(year, 1, 1);
+		LocalDate endDate = LocalDate.of(year, 12, 31);
+
+		return matchRepository.findByMatchDateBetweenOrderByMatchDateDesc(startDate, endDate);
 	}
 
 	//ID検索

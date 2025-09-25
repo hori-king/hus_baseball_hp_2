@@ -14,6 +14,21 @@
 				まだ試合結果が登録されていません。
 			</div>
 			
+			<form th:action="@{/matches}" method="get" class="justify-content-center row g-3 mb-5">
+				<div class="col-auto">
+					<label for="year" class="col-form-label">年度で絞り込む</label>
+				</div>
+				<div class="col-6">
+					<select id="year" name="year" class="form-select justify-content-center mx-auto">
+						<option value="">選択してください</option>
+						<option th:each="year : ${years}" th:value="${year}" th:text="${year} + '年'"></option>
+					</select>
+				</div>
+				<div class="col-auto">
+					<button type="submit" class="btn btn-primary">表示</button>
+				</div>
+			</form>
+			
 			<div th:unless="${matchList.isEmpty()}" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 				<div th:each="match : ${matchList}" class="col">
 					<a th:href="@{/matches/{id}(id=${match.id})}" class="text-decoration-none text-dark">

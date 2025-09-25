@@ -35,10 +35,25 @@ public class MatchController {
 
 	//試合結果一覧を表示
 	@GetMapping("/matches")
-	public String getAllMatches(Model model) {
+	public String getAllMatches(@RequestParam(name = "year", required = false) Integer year, Model model) {
 		//全ての試合結果をデータベースから取得
-		List<Match> matchList = matchService.findAll();
+		List<Match> matchList;
+
+		if (year != null) {
+			//年が指定されている場合、その年の試合結果を取得
+			matchList = matchService.findByYear(year);
+		} else {
+			//年が指定されていない場合、全ての試合結果を取得
+			matchList = matchService.findAll();
+		}
+
+		//存在する年をすべてモデルに追加
+		model.addAttribute("years", matchService.findDistinctYears());
+		//試合結果リストをモデルに追加
 		model.addAttribute("matchList", matchList);
+		//選択された年をモデルに追加
+		model.addAttribute("selectedYear", year);
+
 		return "matches";
 	}
 
