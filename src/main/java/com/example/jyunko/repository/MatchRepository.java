@@ -12,4 +12,6 @@ import com.example.jyunko.entity.Match;
 public interface MatchRepository extends JpaRepository<Match, Integer> {
 	// 最新の試合を3件取得するメソッド
 	List<Match> findTop3ByOrderByMatchDateDesc();
+
+	List<Match> findByOrderByMatchDateDesc();
 }

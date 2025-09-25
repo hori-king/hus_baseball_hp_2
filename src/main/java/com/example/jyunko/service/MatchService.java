@@ -21,7 +21,7 @@ public class MatchService {
 
 	//全件取得
 	public List<Match> findAll() {
-		return matchRepository.findAll();
+		return matchRepository.findByOrderByMatchDateDesc();
 	}
 
 	//ID検索
