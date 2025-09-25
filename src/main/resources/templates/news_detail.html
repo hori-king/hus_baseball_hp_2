@@ -11,7 +11,7 @@
 					<p class="text-muted" th:text="*{#temporals.format(postedDate, 'yyyy年MM月dd日')}"></p>
 					<h1 class="border-bottom border-danger" th:text="*{title}">タイトル</h1>
 					<div class="text-center mt-5">
-						<img th:if="*{photo}" th:src="@{*{photo}}" class="news_img img-fluid" alt="お知らせ写真">
+						<img th:if="*{photo}" th:src="@{*{photo}}" class="img-fluid w-100" alt="お知らせ写真">
 					</div>
 
 					<div class="text-center mt-4 mb-5 fs-4">
