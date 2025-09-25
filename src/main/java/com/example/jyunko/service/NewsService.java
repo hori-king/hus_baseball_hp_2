@@ -25,6 +25,10 @@ public class NewsService {
 		return newsRepository.findByOrderByPostedDateDesc();
 	}
 
+	public List<News> findByCategory(String category) {
+		return newsRepository.findByCategory(category);
+	}
+
 	//ID検索
 	public News findById(Integer id) {
 		return newsRepository.findById(id).orElse(null);

@@ -9,6 +9,18 @@
 	<main class="mt-5">
 		<section class="container text-center">
 			<h1 class="mb-4">お知らせ一覧</h1>
+			
+			<div class="text-center mb-5">
+				<a th:href="@{/news}" class="btn"
+					th:classappend="${selectedCategory == null} ? 'btn-primary' : 'btn-outline-primary'">すべて</a>
+				<a th:href="@{/news(category='イベント')}" class="btn"
+					th:classappend="${selectedCategory == 'イベント'} ? 'btn-primary' : 'btn-outline-primary'">イベント</a>
+				<a th:href="@{/news(category='お知らせ')}" class="btn"
+					th:classappend="${selectedCategory == 'お知らせ'} ? 'btn-primary' : 'btn-outline-primary'">お知らせ</a>
+				<a th:href="@{/news(category='その他')}" class="btn"
+					th:classappend="${selectedCategory == 'その他'} ? 'btn-primary' : 'btn-outline-primary'">その他</a>
+			</div>
+			
 			<div class="row row-cols-1 row-cols-md-3 g-4">
 				<div  th:each="item : ${newsList}" class="col">
 					

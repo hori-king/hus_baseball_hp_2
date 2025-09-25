@@ -40,9 +40,19 @@ public class NewsController {
 
 	//お知らせ一覧を表示
 	@GetMapping("/news")
-	public String newsList(Model model) {
+	public String newsList(@RequestParam(name = "category", required = false) String category, Model model) {
 		//全てのお知らせをデータベースから取得
-		List<News> newsList = newsService.findAll();
+		List<News> newsList;
+
+		//カテゴリーでフィルタリング
+		if (category != null && !category.isEmpty()) {
+			newsList = newsService.findByCategory(category);
+			//選択されたカテゴリーをモデルにセット
+			model.addAttribute("selectedCategory", category);
+		} else {
+			//カテゴリーが指定されてない場合、全件取得
+			newsList = newsService.findAll();
+		}
 		//モデルにセット
 		model.addAttribute("newsList", newsList);
 		return "news";

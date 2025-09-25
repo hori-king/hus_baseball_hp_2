@@ -15,4 +15,6 @@ public interface NewsRepository extends JpaRepository<News, Integer> {
 
 	// 投稿日の降順で全てのニュースを取得するメソッド
 	List<News> findByOrderByPostedDateDesc();
+
+	List<News> findByCategory(String category);
 }
