@@ -38,3 +38,5 @@ out/
 
 #pass#
 .env
+application-*.properties
+application.properties
