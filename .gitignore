@@ -38,6 +38,7 @@ out/
 
 # Secrets - Do not commit these files!
 .env
+application-*.properties
 application.properties
 
 # Log files
