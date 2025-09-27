@@ -36,5 +36,9 @@ out/
 ### VS Code ###
 .vscode/
 
-#pass#
+# Secrets - Do not commit these files!
 .env
+application-*.properties
+
+# Log files
+*.log
