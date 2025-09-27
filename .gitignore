@@ -38,9 +38,6 @@ out/
 
 #pass#
 .env
-<<<<<<< HEAD
 application-*.properties
 application.properties
 
-=======
->>>>>>> parent of b01bcd6 (.gitignoreにSpring Bootのプロパティファイルを追加)
