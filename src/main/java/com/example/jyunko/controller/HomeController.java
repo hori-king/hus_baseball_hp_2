@@ -24,6 +24,11 @@ public class HomeController {
 		model.addAttribute("latestMatches", matchService.findTop3());
 		return "index";
 	}
+	
+	@GetMapping("/about")
+	public String showAbout() {
+		return "about";
+	}
 
 	// ログインページ
 	@GetMapping("/login")
