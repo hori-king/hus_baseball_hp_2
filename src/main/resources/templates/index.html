@@ -7,19 +7,19 @@
 <body>
 	<div th:replace="~{fragments/header :: common_header}"></div>
 	
-	<main class="mt-5">
-		<div class="text-center mb-5">
-			<!--管理者ページからログアウトした時に表示-->
-			<div th:if="${param.logout}" class="alert alert-success" role="alert">
-				ログアウトしました。
+	<main>
+		<section class="introduction pt-5 pb-5">
+			<div class="text-center mb-5">
+				<!--管理者ページからログアウトした時に表示-->
+				<div th:if="${param.logout}" class="alert alert-success" role="alert">
+					ログアウトしました。
+				</div>
+				
+				<h1 class="fw-bold">北海道科学大学 準硬式野球部</h1>
+				<p class="fs-4 mt-3 mb-4">私たちの活動や試合結果をお届けします</p>
+
 			</div>
 			
-			<h1 class="fw-bold">北海道科学大学 準硬式野球部</h1>
-			<p class="fs-4 mt-3 mb-4">私たちの活動や試合結果をお届けします</p>
-	
-		</div>
-		
-		<section class="container mb-5">
 			<div class="row justify-content-center">
 				<!--部活の雰囲気のわかる写真-->
 				<div class="text-center">
@@ -58,7 +58,7 @@
 			</div>
 		</section>
 		
-		<section class="match container">
+		<section class="match">
 			<h2 class="pt-5 mb-5">最近の試合結果
 				<div class="border-bottom border-danger text-end">
 					<a th:href="@{/matches}" class="btn btn-outline-danger mb-2">試合結果一覧へ</a>
