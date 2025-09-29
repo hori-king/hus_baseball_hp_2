@@ -58,7 +58,8 @@ jobs:
           echo "${{ secrets.ENV_FILE }}" > /opt/jyunko-app/.env
           
           # アプリケーションをバックグラウンドで起動
-          cd /opt/jyunko-app nohup java -jar *.jar > app.log 2>&1 &
+          cd /opt/jyunko-app
+          nohup java -jar *.jar > app.log 2>&1 &
           
           # 一時ディレクトリをクリーンアップ
           rm -rf ~/temp-deploy
