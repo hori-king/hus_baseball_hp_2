@@ -7,30 +7,20 @@
 <body>
 	<div th:replace="~{fragments/header :: common_header}"></div>
 	
-	<main class="mt-5">
-		<div class="text-center mb-5">
-			<!--管理者ページからログアウトした時に表示-->
-			<div th:if="${param.logout}" class="alert alert-success" role="alert">
-				ログアウトしました。
-			</div>
-			
-			<h1 class="fw-bold">北海道科学大学 準硬式野球部</h1>
-			<p class="fs-4 mt-3 mb-4">我々の活動や試合結果をお届けします</p>
-	
-		</div>
-		
-		<section class="container mb-5">
-			<div class="row justify-content-center">
-				<div class="col-md-7 text-center mb-4">
-					<h2>私たちについて</h2>
-					<p class="fs-5">
-						私たち北海道科学大学準硬式野球部は、
-						全国大会出場を目指して日々練習に励んでいます。
-						野球を楽しみながらも、真剣に勝利を追求する、文武両道のチームです。
-						初心者、経験者、マネージャー、学年問わず、新しい仲間をいつでも歓迎します！
-					</p>
+	<main>
+		<section class="introduction pt-5 pb-5">
+			<div class="text-center mb-5">
+				<!--管理者ページからログアウトした時に表示-->
+				<div th:if="${param.logout}" class="alert alert-success" role="alert">
+					ログアウトしました。
 				</div>
 				
+				<h1 class="fw-bold">北海道科学大学 準硬式野球部</h1>
+				<p class="fs-4 mt-3 mb-4">私たちの活動や試合結果をお届けします</p>
+
+			</div>
+			
+			<div class="row justify-content-center">
 				<!--部活の雰囲気のわかる写真-->
 				<div class="text-center">
 					<figure class="figure">
@@ -42,14 +32,14 @@
 			</div>
 		</section>
 		
-		<section class="container mb-5">
+		<section class="news mb-5">
 			<h2 class="pt-5 mb-5">最近のお知らせ
 				<div class="border-bottom border-danger text-end">
 					<a th:href="@{/news}" class="btn btn-outline-danger mb-2">お知らせ一覧へ</a>
 				</div>
 			</h2>
 			
-			<div class="row border-bottom border-danger mb-5">
+			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 border-bottom border-danger mb-5">
 				<article class="col mb-5" th:each="news : ${latestNews}">
 					
 					<div class="card shadow-sm card-hover h-100">
@@ -68,14 +58,14 @@
 			</div>
 		</section>
 		
-		<section class="container">
+		<section class="match">
 			<h2 class="pt-5 mb-5">最近の試合結果
 				<div class="border-bottom border-danger text-end">
 					<a th:href="@{/matches}" class="btn btn-outline-danger mb-2">試合結果一覧へ</a>
 				</div>
 			</h2>
 			
-			<div class="row border-bottom border-danger mb-5">
+			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 border-bottom border-danger mb-5">
 				<article class="col mb-5" th:each="match : ${latestMatches}">
 					
 					<div class="card shadow-sm card-hover h-100">

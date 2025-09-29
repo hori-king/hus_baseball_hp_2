@@ -4,7 +4,7 @@ html, body {
 }
 
 body{
-	padding-top: 60px;
+	padding-top: 50px;
 }
 
 main{
@@ -13,6 +13,7 @@ main{
 }
 
 h1{
+	color: darkred;
 	font-family: "Rampart One", sans-serif;
 	font-weight: 400;
 	font-style: normal;
@@ -29,15 +30,30 @@ h1{
 	filter: brightness(0.9); /* 少し暗くする */
 }
 
+.introduction{
+	background-color: black;
+    color: white;
+    padding: 0 50px 0 50px;	
+}
+
+.news{
+	padding: 0 50px;	
+}
+
 .news_img{
 	aspect-ratio: 4 / 3;
 }
 
 .member_img{
 	width: 100%;
-
 	aspect-ratio: 3 / 4;
 	object-fit: cover;
+}
+
+.match{
+	background-color: black;
+	color: white;
+	padding: 0 50px;	
 }
 
 .match_img{
@@ -123,4 +139,18 @@ h1{
 .back-to-top:hover{
 	background-color: darkred;
 	border-color: darkred;
+}
+
+@media screen and (min-width:600px) {
+  .introduction {
+    padding: 0 100px;
+  }
+  
+  .news{
+  	padding: 0 100px;	
+  }
+
+  .match{
+  	padding: 0 100px;	
+  }
 }

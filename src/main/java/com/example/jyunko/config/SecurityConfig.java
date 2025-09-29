@@ -27,11 +27,10 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(authorize -> authorize
 				// CSSや画像などの静的リソース
-				// トップページ、お知らせ、部員紹介、試合結果
+				// トップページ、部活紹介、お知らせ、部員紹介、試合結果
 				// お問い合わせフォームは誰でもアクセスできるように設定
 				.requestMatchers("/css/**", "/images/**", "/js/**").permitAll()
-				.requestMatchers("/", "/news/**", "/members/**", "/matches/**").permitAll()
-				.requestMatchers("/inquiry").permitAll()
+				.requestMatchers("/", "/about", "/news/**", "/members/**", "/matches/**", "/inquiry").permitAll()
 				// 上記以外のすべてのリクエストは、認証（ログイン）が必要
 				.anyRequest().authenticated())
 				.formLogin(login -> login
