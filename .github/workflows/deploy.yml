@@ -9,7 +9,7 @@ jobs:
   build-and-deploy:
     # ubuntuの最新版の仮想環境で実行する
     runs-on: ubuntu-latest
-
+    timeout-minutes: 15
     steps:
     # 1. リポジトリのコードをチェックアウト（ダウンロード）
     - name: Checkout Repository
