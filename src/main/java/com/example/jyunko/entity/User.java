@@ -12,10 +12,14 @@ import lombok.Data;
 @Table(name = "users")
 @Data
 public class User {
+	// ユーザーID
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	// ユーザー名
 	private String username;
+	// パスワード
 	private String password;
+	// 役割（例: "ADMIN", "USER" など）
 	private String role;
 }

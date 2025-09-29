@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/head :: common_head('ログインフォーム')}"></head>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head th:replace="~{fragments/head :: common_head('ログインフォーム', '/login',
+	'管理者専用のログインページです。')}">
+</head>
 <body>
 	<main>
-		<div class="container mt-5">
+		<section class="container mt-5">
 			<div class="row justify-content-center">
-				<div class="col-md-5">
+				<div class="col-8 col-sm-10 col-md-8 col-lg-6 col-xl-5">
 					<h1 class="text-center mb-5">ログイン</h1>
+					
+					<!-- ログアウト失敗メッセージ -->
 					<div th:if="${param.error}" class="alert alert-danger" role="alert">
 						ユーザー名またはパスワードが正しくありません。
 					</div>
@@ -14,19 +18,19 @@
 					<form th:action="@{/login}" method="post">
 						<div class="row mb-3">
 							<label class="form-label col-sm-3 fs-4">ユーザ名</label>
-							<input type="text" name="username" class="form-controll col-sm-9" required>
+							<input type="text" name="username" class="form-control col-sm-9" required>
 						</div>
 						<div class="row mb-3">
 							<label class="form-label col-sm-3 fs-4">パスワード</label>
-							<input type="password" name="password" class="form-controll col-sm-9" required>
+							<input type="password" name="password" class="form-control col-sm-9" required>
 						</div>
-						<div class="d-grid">
+						<div class="d-grid mt-5">
 							<input type="submit" value="ログイン" class="btn btn-primary">
 						</div>
 					</form>
 				</div>
 			</div>
-		</div>
+		</section>
 	</main>
 	
 	<script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

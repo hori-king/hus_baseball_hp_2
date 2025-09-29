@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/head :: common_head('部員管理')}"></head>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head th:replace="~{fragments/head :: common_head('部員管理', '/admin/members/' + ${member.id},
+	'部員の登録・編集フォームです。')}">
+</head>
 <body>
 	<div th:replace="~{fragments/admin_header :: common_admin_header}"></div>
 	
-	<main class="mt-5 mb-5">
+	<main class="mt-5">
 		<div class="container">
 			<h1 th:if="${member.id == null}">部員 新規登録</h1>
 			<h1 th:unless="${member.id == null}">部員 編集</h1>
 			
-			<form th:action="${member.id == null} ? @{/admin/members} : @{/admin/members/{id}/edit(id=${member.id})}" method="post" th:object="${member}">
+			<form th:action="${member.id == null} ? @{/admin/members} : @{/admin/members/{id}/edit(id=${member.id})}"
+				method="post" th:object="${member}" enctype="multipart/form-data">
+				
 				<input type="hidden" th:if="${member.id == null}" th:field=*{id}>
 				<div class="mb-3">
 					<label for="name" class="form-label">名前</label>
@@ -18,10 +22,21 @@
 				<div class="mb-3">
 					<label for="grade" class="form-label">学年</label>
 					<input type="number" id="grade" class="form-control" th:field="*{grade}" required>
+					
+					<div th:if="${#fields.hasErrors('grade')}" th:errors="*{grade}" class="text-danger small"></div>
+				</div>
+				<div class="mb-3">
+					<label for="number" class="form-label">背番号</label>
+					<input type="number" id="number" class="form-control" th:field="*{number}" required>
+					
+					<div th:if="${#fields.hasErrors('number')}" th:errors="*{number}" class="text-danger small"></div>
 				</div>
 				<div class="mb-3">
 					<label for="position" class="form-label">ポジション</label>
-					<input type="text" id="position" class="form-control" th:field="*{position}" required>
+					<select id="position" class="form-select" th:field="*{position}">
+						<option value="">選択してください</option>
+						<option th:each="position : ${positions}" th:value="${position}" th:text="${position}"></option>
+					</select>
 				</div>
 				<div class="mb-3">
 					<label for="almaMater" class="form-label">出身校</label>
@@ -29,20 +44,30 @@
 				</div>
 				<div class="mb-3">
 					<label for="faculty" class="form-label">学部</label>
-					<input type="text" id="faculty" class="form-control" th:field="*{faculty}" required>
+					<select id="faculty" class="form-select" th:field="*{faculty}">
+						<option value="">選択してください</option>
+						<option th:each="faculty : ${faculties}" th:value="${faculty}" th:text="${faculty}"></option>
+					</select>
 				</div>
 				<div class="mb-3">
 					<label for="department" class="form-label">学科</label>
-					<input type="text" id="department" class="form-control" th:field="*{department}" required>
+					<select id="department" class="form-select" th:field="*{department}">
+						<option value="">選択してください</option>
+						<option th:each="department : ${departments}" th:value="${department}" th:text="${department}"></option>
+					</select>
 				</div>
 				
 				<div class="mb-3">
 					<label for="photo" class="form-label">写真</label>
-					<input type="text" id="photo" class="form-control" th:field="*{photo}" required>
+					<input type="file" id="photo" name="photo" class="form-control">
+					
+					<div th:if="${#fields.hasErrors('photo')}" th:errors="*{photo}" class="text-danger small"></div>
 				</div>
 				
-				<button type="submit" class="btn btn-outline-success" th:text="${member.id == null} ? '登録' : '編集'"></button>
-				<a th:href="@{/admin/members}" class="btn btn-secondary">部員一覧へ</a>
+				<div class="justify-content-center d-flex gap-5 mt-5">
+					<button type="submit" class="btn btn-outline-success" th:text="${member.id == null} ? '登録' : '編集'"></button>
+					<a th:href="@{/admin/members}" class="btn btn-secondary">部員一覧へ</a>
+				</div>
 			</form>
 			
 		</div>
@@ -50,6 +75,5 @@
 	</main>
 	
 	<div th:replace="~{fragments/admin_footer :: common_admin_footer}"></div>
-	<script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

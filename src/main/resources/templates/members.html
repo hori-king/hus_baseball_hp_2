@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 	
-<head th:replace="~{fragments/head :: common_head('部員紹介')}"></head>
+<head th:replace="~{fragments/head :: common_head('部員紹介', '/members',
+	'北海道科学大学準硬式野球部で活躍する部員たちを紹介しています。')}">
+</head>
 
 <body>
 	<div th:replace="~{fragments/header :: common_header}"></div>
 	
-	<main>
-		<div class="container mt-4 mb-5">
+	<main class="mt-5">
+		<section class="container mt-4 mb-5">
 			<h1 class="mb-4 text-center">部員紹介</h1>
 			<div class="row">
 				<div class="col-lg-4 col-md-6 mb-4" th:each="member : ${memberList}">
@@ -18,6 +20,7 @@
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item"  th:text="'名前 : ' + ${member.name}">名前</li>
 								<li class="list-group-item" th:text="'学年 : ' + ${member.grade} + '年'">学年</li>
+								<li class="list-group-item" th:text="'背番号 : ' + ${member.number}">背番号</li>
 								<li class="list-group-item" th:text="'出身校 : ' + ${member.almaMater}">出身校</li>
 								<li class="list-group-item" th:text="'ポジション : ' + ${member.position}">ポジション</li>
 								<li class="list-group-item" th:text="'学部 : ' + ${member.faculty}">学部</li>
@@ -28,11 +31,9 @@
 					
 				</div>
 			</div>
-		</div>
+		</section>
 	</main>
 	
 	<div th:replace="~{fragments/footer :: common_footer}" class="mt-auto"></div>
-	
-	<script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

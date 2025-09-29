@@ -1,39 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 
-<head th:replace="~{fragments/head :: common_head('お知らせ一覧')}"></head>
+<head th:replace="~{fragments/head :: common_head('お知らせ一覧', '/news',
+	'北海道科学大学準硬式野球部の最新のお知らせ一覧です。試合の告知やイベントの案内などを掲載しています。')}">
+</head>
 
 <body>
 	<div th:replace="~{fragments/header :: common_header}"></div>
 	
-	<main class="mt-5 mb-5">
-		<div class="container text-center">
-			<section>
-				<h1>お知らせ一覧</h1>
-				<div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
-					<div  th:each="item : ${newsList}" class="col">
-						
-						<a th:href="@{/news/{id}(id=${item.id})}" class="text-decoration-none text-dark">
-							<div class="card h-100 shadow-sm card-hover">
-								<img th:if="${item.photo}" th:src="@{${item.photo}}" class="card-img-top" alt="ニュース写真" />
-								<div class="card-body">
-									<h5 th:text="${item.title}" class="card-title">ニュース</h5>
-								</div>
-								<div class="card-footer">
-									<small th:text="${#temporals.format(item.postedDate, 'yyyy-MM-dd')}" class="text-body-secondary">
-									Last updated 3 minsago</small>
-								</div>
+	<main class="mt-5">
+		<section class="container text-center">
+			<h1 class="mb-4">お知らせ一覧</h1>
+			
+			<div class="text-center mb-5">
+				<a th:href="@{/news}" class="btn"
+					th:classappend="${selectedCategory == null} ? 'btn-primary' : 'btn-outline-primary'">すべて</a>
+				<a th:href="@{/news(category='イベント')}" class="btn"
+					th:classappend="${selectedCategory == 'イベント'} ? 'btn-primary' : 'btn-outline-primary'">イベント</a>
+				<a th:href="@{/news(category='お知らせ')}" class="btn"
+					th:classappend="${selectedCategory == 'お知らせ'} ? 'btn-primary' : 'btn-outline-primary'">お知らせ</a>
+				<a th:href="@{/news(category='その他')}" class="btn"
+					th:classappend="${selectedCategory == 'その他'} ? 'btn-primary' : 'btn-outline-primary'">その他</a>
+			</div>
+			
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div  th:each="item : ${newsList}" class="col">
+					
+					<a th:href="@{/news/{id}(id=${item.id})}" class="text-decoration-none text-dark">
+						<div class="card h-100 shadow-sm card-hover">
+							<img th:if="${item.photo}" th:src="@{${item.photo}}" class="news_img card-img-top" alt="ニュース写真" />
+							<div class="card-body">
+								<h4 th:text="${item.title}" class="card-title">ニュース</h4>
 							</div>
-						</a>
-						
-					</div>
+							<div class="card-footer">
+								<small th:text="${#temporals.format(item.postedDate, 'yyyy-MM-dd')}" class="text-body-secondary">
+									Last updated 3 minsago
+								</small>
+							</div>
+						</div>
+					</a>
+					
 				</div>
-			</section>
-		</div>
+			</div>
+		</section>
 	</main>
 	
 	<div th:replace="~{fragments/footer :: common_footer}" class="mt-auto"></div>
-	
-	<script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

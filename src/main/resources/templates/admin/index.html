@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/head :: common_head('管理者ページ')}"></head>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head th:replace="~{fragments/head :: common_head('管理者ページ', '/admin',
+	'管理者専用のトップページです。')}">
+</head>
 <body>
 	<main class="mt-5">
 		<div class="text-center mt-5 mb-5">
@@ -12,7 +14,7 @@
 				<div class="col">
 					<div class="card h-100">
 						<div class="card-body text-center">
-							<h5 class="card-title">お知らせ管理</h5>
+							<h2 class="card-title">お知らせ管理</h2>
 							<p class="card-text">お知らせの追加、編集、削除を行います。</p>
 							<a th:href="@{/admin/news}" class="btn btn-primary">お知らせ管理</a>
 						</div>
@@ -22,7 +24,7 @@
 				<div class="col">
 					<div class="card h-100">
 						<div class="card-body text-center">
-							<h5 class="card-title">部員管理</h5>
+							<h2 class="card-title">部員管理</h2>
 							<p class="card-text">部員情報の追加、編集、削除を行います。</p>
 								<a th:href="@{/admin/members}" class="btn btn-primary">部員管理</a>
 						</div>
@@ -32,7 +34,7 @@
 				<div class="col mt-5">
 					<div class="card h-100">
 						<div class="card-body text-center">
-							<h5 class="card-title">試合管理</h5>
+							<h2 class="card-title">試合管理</h2>
 							<p class="card-text">試合情報の追加、編集、削除を行います。</p>
 							<a th:href="@{/admin/matches}" class="btn btn-primary">試合管理</a>
 						</div>
@@ -42,7 +44,7 @@
 				<div class="col mt-5">
 					<div class="card h-100">
 						<div class="card-body text-center">
-							<h5 class="card-title">お問い合わせ管理</h5>
+							<h2 class="card-title">お問い合わせ管理</h2>
 							<p class="card-text">お問い合わせの確認、ステータス変更、削除を行います。</p>
 							<a th:href="@{/admin/inquiries}" class="btn btn-primary">お問い合わせ管理</a>
 						</div>
@@ -52,7 +54,7 @@
 			</div>
 			
 			<div class="text-center mt-5">
-				<a th:href="@{/}" class="btn btn-secondary">メインページへ</a>
+				<a th:href="@{/}" class="btn btn-secondary">トップページへ</a>
 			</div>
 			<div class="text-center mt-5">
 				<form th:action="@{/logout}" method="post" class="d-flex justify-content-center">

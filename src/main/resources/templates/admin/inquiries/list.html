@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/head :: common_head('お問い合わせ管理')}"></head>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head th:replace="~{fragments/head :: common_head('お問い合わせ管理', '/inquiries',
+	'お問い合わせの管理ページです。')}">
+</head>
 <body>
 	<div th:replace="~{fragments/admin_header :: common_admin_header}"></div>
 	
@@ -9,12 +11,12 @@
 			<h1 class="mb-4">お問い合わせ一覧</h1>
 			<table class="table table-striped table-hover">
 				<thead class="table-dark">
-					<th scope="col">ID</th>
-					<th scope="col">氏名</th>
-					<th scope="col">件名</th>
-					<th scope="col">登録日時</th>
-					<th scope="col">ステータス</th>
-					<th scope="col">操作</th>
+					<th scope="col" class="inquiry_id">ID</th>
+					<th scope="col" class="inquiry_name">氏名</th>
+					<th scope="col" class="inquiry_subject">件名</th>
+					<th scope="col" class="inquiry_date">登録日時</th>
+					<th scope="col" class="inquiry_status">ステータス</th>
+					<th scope="col" class="inquiry_operation">操作</th>
 				</thead>
 				<tbody>
 					<tr th:each="inquiry : ${inquiryList}" th:object="${inquiry}">
@@ -28,19 +30,21 @@
 							<span th:if="*{status == 2}" class="badge bg-success">対応済み</span>
 						</td>
 						<td class="text-nowrap">
-							<form th:action="@{/admin/inquires/{id}/update-status(id=*{id})}" method="post" class="d-inline">
+							<form th:action="@{/admin/inquiries/{id}/update-status(id=*{id})}" method="post" class="d-inline pe-3">
 								<input type="hidden" name="status" value="2">
 								<button type of="submit" class="btn btn-sm btn-success" th:if="*{status != 2}">対応済みにする</button>
 							</form>
-							<form th:action="@{/admin/inquires/{id}/update-status(id=*{id})}" method="post" class="d-inline">
+							<form th:action="@{/admin/inquiries/{id}/update-status(id=*{id})}" method="post" class="d-inline pe-3">
 								<input type="hidden" name="status" value="1">
-								<button type of="submit" class="btn btn-sm btn-success" th:if="*{status != 1}">対応中にする</button>
+								<button type of="submit" class="btn btn-sm btn-warning" th:if="*{status != 1}">対応中にする</button>
 							</form>
-							<form th:action="@{/admin/inquires/{id}/update-status(id=*{id})}" method="post" class="d-inline">
+							<form th:action="@{/admin/inquiries/{id}/update-status(id=*{id})}" method="post" class="d-inline pe-3">
 								<input type="hidden" name="status" value="0">
-								<button type of="submit" class="btn btn-sm btn-success" th:if="*{status != 0}">未対応にする</button>
+								<button type of="submit" class="btn btn-sm btn-danger" th:if="*{status != 0}">未対応にする</button>
 							</form>
-							<form th:action="@{/admin/inquiries/{id}/delete(id=*{id})}" method="post" class="d-inline ps-3" onsubmit="return confirm('本当に削除しますか？')">
+							<a th:href="@{/admin/inquiries/{id}(id=*{id})}" class="btn btn-sm btn-outline-info">詳細</a>
+							<form th:action="@{/admin/inquiries/{id}/delete(id=*{id})}" method="post" class="d-inline ps-5"
+								onsubmit="return confirm('本当に削除しますか？')">
 								<button type="submit" class="btn btn-sm btn-danger">削除</button>
 							</form>
 						</td>

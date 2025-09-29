@@ -1,34 +1,37 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/head :: common_head('お問い合わせ')}"></head>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head th:replace="~{fragments/head :: common_head('お問い合わせ', '/inquiry',
+	'入部希望、練習見学、練習試合のお申込みなど、北海道科学大学準硬式野球部のお問い合わせはこちらから。')}">
+</head>
 <body>
 	<div th:replace="~{fragments/header :: common_header}"></div>
 	
 	<main class="mt-5">
-		<div class="container mb-5">
+		<div class="container">
 			<h1 class="text-center mb-5">お問い合わせフォーム</h1>
 			<div class="row justify-content-center">
 				
-				<div class="col col-10 col-md-8">
+				<div class="col col-9 col-lg-6">
+					<!-- 送信成功メッセージ -->
 					<div th:if="${successMessage}" class="alert alert-success" role="alert"
 						th:text="${successMessage}"></div>
 					
-					<form th:action="@{/inquiry}" th:object="${inquiry}" class="text-center" method="post">
+					<form th:action="@{/inquiry}" th:object="${inquiry}" method="post">
 						<div class="row mb-3">
-							<label for="name" class="col-sm-3 col-form-label fs-5">お名前</label>
-							<input type="text" id="name" class="col-sm-9 form-controll" th:field="*{name}" required>
+							<label for="name" class="col-form-label fs-5">お名前</label>
+							<input type="text" id="name" class="col-sm-9 form-control" th:field="*{name}" required>
 						</div>
 						<div class="row mb-3">
-							<label for="email" class="col-sm-3 col-form-label fs-5">メールアドレス</label>
-							<input type="email" id="email" class="col-sm-9 form-controll" th:field="*{email}" required>
+							<label for="email" class="col-form-label fs-5">メールアドレス</label>
+							<input type="email" id="email" class="col-sm-9 form-control" th:field="*{email}" required>
 						</div>
 						<div class="row mb-3">
-							<label for="subject" class="col-sm-3 col-form-label fs-5">件名</label>
-							<input type="text" id="subject" class="col-sm-9 form-controll" th:field="*{subject}" required>
+							<label for="subject" class="col-form-label fs-5">件名</label>
+							<input type="text" id="subject" class="col-sm-9 form-control" th:field="*{subject}" required>
 						</div>
 						<div class="row mb-3">
-							<label for="content" class="col-sm-3 col-form-label fs-5">質問内容</label>
-							<textarea id="content" class="col-sm-9 form-controll" rows="5" th:field="*{content}" required></textarea>
+							<label for="content" class="col-form-label fs-5">質問内容</label>
+							<textarea id="content" class="col-sm-9 form-control" rows="5" th:field="*{content}" required></textarea>
 						</div>
 						<div class="text-center">
 							<input  type="submit" class="btn btn-primary"></input>
@@ -41,7 +44,5 @@
 	</main>
 	
 	<div th:replace="~{fragments/footer :: common_footer}"></div>
-	
-	<script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

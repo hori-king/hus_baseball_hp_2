@@ -8,6 +8,13 @@ import org.springframework.stereotype.Repository;
 import com.example.jyunko.entity.News;
 
 @Repository
+// Newsエンティティに対するCRUD操作を提供するリポジトリインターフェース
 public interface NewsRepository extends JpaRepository<News, Integer> {
+	// 最新のニュースを3件取得するメソッド
 	List<News> findTop3ByOrderByPostedDateDesc();
+
+	// 投稿日の降順で全てのニュースを取得するメソッド
+	List<News> findByOrderByPostedDateDesc();
+
+	List<News> findByCategory(String category);
 }
