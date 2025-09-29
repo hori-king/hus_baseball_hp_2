@@ -63,3 +63,4 @@ jobs:
           
           # 一時ディレクトリをクリーンアップ
           rm -rf ~/temp-deploy
+		  
