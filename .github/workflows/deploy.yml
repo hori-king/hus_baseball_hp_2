@@ -10,6 +10,7 @@ jobs:
     # ubuntuの最新版の仮想環境で実行する
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
     steps:
     # 1. リポジトリのコードをチェックアウト（ダウンロード）
     - name: Checkout Repository
@@ -30,7 +31,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build -x test
 
-    # 5. 新しいJARファイルをサーバーに転送
+    # 5. 新しいJARファイルをサーバーの一時ディレクトリに転送
     - name: SCP JAR file to Server
       uses: appleboy/scp-action@master
       with:
@@ -38,7 +39,7 @@ jobs:
         username: ${{ secrets.VPS_USERNAME }}
         password: ${{ secrets.VPS_PASSWORD }}
         source: "build/libs/*.jar"
-        target: "~/temp-deploy" # サーバーの一時ディレクトリに転送
+        target: "~/temp-deploy"
         strip_components: 2
 
     # 6. サーバー上でデプロイと再起動を実行
@@ -50,25 +51,24 @@ jobs:
         password: ${{ secrets.VPS_PASSWORD }}
         script: |
           # 実行中の古いアプリケーションを特定して停止
-          PID=$(pgrep -f hus_baseball_hp_2)
-          if [ -n "$PID" ]; then
-            kill $PID
-          fi
+          pkill -f 'hus_baseball_hp' || true
+          sleep 5
           
-          # アプリケーション用ディレクトリに移動
-          cd /opt/jyunko-app
+          # アプリケーション用ディレクトリがなければ作成
+          mkdir -p /opt/jyunko-app
           
           # 古いファイルを削除
-          rm -f *.jar
-          rm -f app.log
+          rm -f /opt/jyunko-app/*.jar
+          rm -f /opt/jyunko-app/app.log
           
           # 一時ディレクトリから新しいJARファイルを移動
-          mv ~/temp-deploy/*.jar .
+          mv ~/temp-deploy/*.jar /opt/jyunko-app/
           
           # .envファイルを作成
-          echo "${{ secrets.ENV_FILE }}" > .env
+          echo "${{ secrets.ENV_FILE }}" > /opt/jyunko-app/.env
           
           # アプリケーションをバックグラウンドで起動
+          cd /opt/jyunko-app
           nohup java -jar *.jar > app.log 2>&1 &
           
           # 一時ディレクトリをクリーンアップ
