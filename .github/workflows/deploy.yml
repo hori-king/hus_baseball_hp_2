@@ -25,14 +25,18 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build -x test
 
+
     - name: SCP Executable JAR to Server
+
       uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.VPS_HOST }}
         username: ${{ secrets.VPS_USERNAME }}
         password: ${{ secrets.VPS_PASSWORD }}
+
         # ↓↓↓ sourceから-plain.jarを除外する ↓↓↓
         source: "build/libs/!(*-plain).jar"
+
         target: "~/temp-deploy"
         strip_components: 2
 
@@ -43,6 +47,7 @@ jobs:
         username: ${{ secrets.VPS_USERNAME }}
         password: ${{ secrets.VPS_PASSWORD }}
         script: |
+
           pkill -f 'hus_baseball_hp' || true
           sleep 5
           
@@ -52,6 +57,7 @@ jobs:
           rm -f /opt/jyunko-app/app.log
           
           # 転送されたJARファイルを移動
+
           mv ~/temp-deploy/*.jar /opt/jyunko-app/
           
           # .envファイルを作成
