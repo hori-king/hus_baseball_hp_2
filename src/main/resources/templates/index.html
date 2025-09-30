@@ -24,7 +24,8 @@
 				<!--部活の雰囲気のわかる写真-->
 				<div class="text-center">
 					<figure class="figure">
-						<img src="https://placehold.jp/1000x400.png?text=活動写真" class="figure-img img-fluid rounded shadow" alt="部活の活動写真">
+						<img src="https://placehold.jp/1000x400.png?text=活動写真"
+							class="figure-img img-fluid rounded shadow" alt="部活の活動写真">
 						<figcaption class="figure-caption text-center">活動写真</figcaption>
 					</figure>
 				</div>
@@ -49,7 +50,8 @@
 								<h3 class="card-title text-center" th:text="${news.title}">タイトル</h3>
 							</div>
 							<div class="card-footer">
-								<p class="card-text text-muted" th:text="${#temporals.format(news.postedDate, 'yyyy年MM月dd日')}">日付</p>
+								<p class="card-text text-muted" 
+									th:text="${#temporals.format(news.postedDate, 'yyyy年MM月dd日')}">日付</p>
 							</div>
 						</a>
 					</div>
@@ -65,12 +67,13 @@
 				</div>
 			</h2>
 			
-			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 border-bottom border-danger mb-5">
-				<article class="col mb-5" th:each="match : ${latestMatches}">
+			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 pb-5 mb-5">
+				<article class="col pb-5 border-bottom border-danger" th:each="match : ${latestMatches}">
 					
 					<div class="card shadow-sm card-hover h-100">
 						<a th:href="@{/matches/{id}(id=${match.id})}" class="text-decoration-none text-dark">
-							<img th:if="@{match.photo}" th:src="@{${match.photo}}" class="match_img card-img-top" alt="試合写真">
+							<img th:if="@{match.photo}" th:src="@{${match.photo}}"
+								class="match_img card-img-top" alt="試合写真">
 							<div class="card-body">
 								<h3 class="card-title text-center" th:text="'対戦相手： ' + ${match.opponent}">対戦相手</h3>
 								<div class="d-flex justify-content-center align-items-center fs-3">
