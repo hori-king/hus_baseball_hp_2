@@ -12,7 +12,7 @@ main{
 	margin-bottom: 100px;
 }
 
-.index{
+.index , .about_text{
 	color: white;
 }
 
@@ -42,6 +42,15 @@ h1{
 .introduction_img{
 	aspect-ratio: 16 / 9;
 	object-fit: cover;
+}
+
+.about{
+	background-image: linear-gradient(
+		rgba(0, 0, 0, 0.6),
+		rgba(0, 0, 0, 0.6)),
+		url(/images/introduction.jpg);
+	background-size: cover;
+	background-position: center;
 }
 
 .news{
