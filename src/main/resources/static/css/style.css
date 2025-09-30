@@ -12,6 +12,10 @@ main{
 	margin-bottom: 160px;
 }
 
+.index{
+	color: white;
+}
+
 h1{
 	color: darkred;
 	font-family: "Rampart One", sans-serif;
@@ -31,9 +35,13 @@ h1{
 }
 
 .introduction{
-	background-color: black;
     color: white;
     padding: 0 50px 0 50px;	
+}
+
+.introduction_img{
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
 }
 
 .news{
