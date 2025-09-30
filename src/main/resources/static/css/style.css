@@ -4,12 +4,12 @@ html, body {
 }
 
 body{
-	padding-top: 50px;
+	padding-top: 80px;
 }
 
 main{
 	min-height: calc(100vh - 160px);
-	margin-bottom: 160px;
+	margin-bottom: 100px;
 }
 
 .index{
