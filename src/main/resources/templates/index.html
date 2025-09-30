@@ -8,14 +8,14 @@
 	<div th:replace="~{fragments/header :: common_header}"></div>
 	
 	<main>
-		<section class="introduction pt-5 pb-5">
+		<section class="introduction bg-dark pt-5 pb-5">
 			<div class="text-center mb-5">
 				<!--管理者ページからログアウトした時に表示-->
 				<div th:if="${param.logout}" class="alert alert-success" role="alert">
 					ログアウトしました。
 				</div>
 				
-				<h1 class="fw-bold">北海道科学大学 準硬式野球部</h1>
+				<h1 class="index">北海道科学大学 準硬式野球部</h1>
 				<p class="fs-4 mt-3 mb-4">私たちの活動や試合結果をお届けします</p>
 
 			</div>
@@ -24,8 +24,8 @@
 				<!--部活の雰囲気のわかる写真-->
 				<div class="text-center">
 					<figure class="figure">
-						<img src="https://placehold.jp/1000x400.png?text=活動写真"
-							class="figure-img img-fluid rounded shadow" alt="部活の活動写真">
+						<img src="images/introduction.jpg"
+							class="introduction_img figure-img img-fluid rounded shadow" alt="部活の活動写真">
 						<figcaption class="figure-caption text-center">活動写真</figcaption>
 					</figure>
 				</div>
