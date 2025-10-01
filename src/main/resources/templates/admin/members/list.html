@@ -21,7 +21,6 @@
 					<tr>
 						<th scope="col" class="member_name">名前</th>
 						<th scope="col" class="member_grade">学年</th>
-						<th scope="col" class="member_number">背番号</th>
 						<th scope="col" class="member_position">ポジション</th>
 						<th scope="col" class="member_almaMater">出身校</th>
 						<th scope="col" class="member_faculty">学部</th>
@@ -35,7 +34,6 @@
 					<tr th:each="member : ${memberList}" th:object="${member}">
 						<td th:text="*{name}"></td>
 						<td th:text="*{grade}"></td>
-						<td th:text="*{number}"></td>
 						<td th:text="*{position}"></td>
 						<td th:text="*{almaMater}"></td>
 						<td th:text="*{faculty}"></td>
