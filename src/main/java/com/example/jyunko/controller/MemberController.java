@@ -45,9 +45,13 @@ public class MemberController {
 		
 		//学年の選択肢をモデルにセット
 	    List<Integer> existingGrades = memberList.stream()
+	    		//学年を抽出
 	    		.map(Member::getGrade)
+	    		//重複を排除
 	    		.distinct()
+	    		//降順にソート
 	    		.sorted(Comparator.reverseOrder())
+	    		//リストに変換
 	    		.collect(Collectors.toList());
 
 	    model.addAttribute("grades", existingGrades);
