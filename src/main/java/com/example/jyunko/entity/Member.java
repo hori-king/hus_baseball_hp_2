@@ -24,10 +24,7 @@ public class Member {
 	// 学年
 	@Min(value = 1, message = "学年は1以上の整数で入力してください")
 	@Max(value = 6, message = "学年は6以下の整数で入力してください")
-	private String grade;
-	// 背番号
-	@Min(value = 0, message = "背番号は0以上の整数で入力してください")
-	private Integer number;
+	private Integer grade;
 	// ポジション
 	private String position;
 	// 出身校
