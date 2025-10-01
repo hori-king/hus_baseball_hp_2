@@ -40,6 +40,11 @@ public class MemberController {
 		List<Member> memberList = memberService.findAll();
 		//モデルにセット
 		model.addAttribute("memberList", memberList);
+		
+		//学年の選択肢をモデルにセット
+	    List<Integer> grades = List.of(6,5,4,3,2,1);
+	    model.addAttribute("grades", grades);
+		
 		//部員一覧画面を表示
 		return "members";
 	}
