@@ -67,6 +67,10 @@ h1{
 	object-fit: cover;
 }
 
+.grade-border{
+	border-bottom: 2px solid darkred;
+}
+
 .match{
 	background-color: black;
 	color: white;
@@ -166,16 +170,8 @@ h1{
 }
 
 @media screen and (min-width:600px) {
-  .introduction {
+  .introduction, .news, .match {
     padding: 0 100px;
-  }
-  
-  .news{
-  	padding: 0 100px;	
-  }
-
-  .match{
-  	padding: 0 100px;	
   }
   
 }
