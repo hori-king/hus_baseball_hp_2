@@ -40,8 +40,8 @@
 				</div>
 			</h2>
 			
-			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 pb-5 mb-5">
-				<article class="col border-bottom border-danger pb-5" th:each="news : ${latestNews}">
+			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 border-bottom border-danger mb-5">
+				<article class="col pb-5" th:each="news : ${latestNews}">
 					
 					<div class="card shadow-sm card-hover h-100">
 						<a th:href="@{/news/{id}(id=${news.id})}" class="d-flex flex-column h-100 text-decoration-none text-dark">
@@ -60,15 +60,15 @@
 			</div>
 		</section>
 		
-		<section class="match">
+		<section class="match pb-5">
 			<h2 class="pt-5 mb-5">最近の試合結果
 				<div class="border-bottom border-danger text-end">
 					<a th:href="@{/matches}" class="btn btn-outline-danger mb-2">一覧へ</a>
 				</div>
 			</h2>
 			
-			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 pb-5 mb-5">
-				<article class="col pb-5 border-bottom border-danger" th:each="match : ${latestMatches}">
+			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 border-bottom border-danger">
+				<article class="col pb-5" th:each="match : ${latestMatches}">
 					
 					<div class="card shadow-sm card-hover h-100">
 						<a th:href="@{/matches/{id}(id=${match.id})}" class="text-decoration-none text-dark">
@@ -94,13 +94,17 @@
 			</div>
 		</section>
 		
-		<section class="cta-section container text-white">
-			<h2 class="text-center py-5">お問い合わせフォーム</h2>
-			<p class="text-center mb-4">
-				ご質問やご意見がございましたら、以下のフォームからお気軽にお問い合わせください。
-			</p>
+		<section class="cta-section container text-white mt-5">
 			<div class="text-center">
-				<a th:href="@{/inquiry}" class="btn btn-danger btn-lg">お問い合わせ</a>
+				<h2 class="py-5">お問い合わせフォーム</h2>
+				<p class="fs-4 mb-5">
+					「練習は週に何回？」「部費はいくら？」「初心者でも大丈夫？」<br>
+					私たちの活動について、どんな些細なことでも構いません。少しでも気になったことがあれば、以下のフォームからお気軽にご質問ください。<br>
+					現役部員が丁寧にお答えします！
+				</p>
+				<div class="d-grid col-6 mx-auto pb-5">
+					<a th:href="@{/inquiry}" class="btn btn-danger btn-lg">お問い合わせ</a>
+				</div>
 			</div>
 					
 		</section>
