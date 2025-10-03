@@ -86,11 +86,11 @@ h1{
 }
 
 .cta-section{
-	height: 400px;
+
 	background-image: linear-gradient(
 		rgba(0, 0, 0, 0.6),
 		rgba(0, 0, 0, 0.6)),
-		url(https://placehold.jp/1000x400.png?text=問い合わせ);
+		url(/images/introduction.jpg);
 	background-size: cover;
 	background-position: center;
 	border-radius: 20px;
