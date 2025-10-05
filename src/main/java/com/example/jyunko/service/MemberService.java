@@ -33,8 +33,13 @@ public class MemberService {
 	public void saveWithPhoto(Member member, MultipartFile photo) throws IOException {
 		// 写真がアップロードされているかチェック
 		if (!photo.isEmpty()) {
-			// アップロード先のディレクトリを指定
-			String uploadDir = "src/main/resources/static/images/members/";
+			// 1. 保存先のベースとなるディレクトリを定義
+			Path uploadDir = Paths.get("uploads/members");
+			
+		    // 2. ディレクトリが存在しない場合は、ここで自動的に作成する
+			if (!Files.exists(uploadDir)) {
+				Files.createDirectories(uploadDir);
+			}
 
 			// ファイル名が重複しないように、ファイル名を生成
 			String originalFileName = photo.getOriginalFilename();
@@ -44,11 +49,11 @@ public class MemberService {
 			String newFileName = UUID.randomUUID().toString() + extension;
 
 			// ファイルをサーバーに保存
-			Path filePath = Paths.get(uploadDir + newFileName);
+			Path filePath = uploadDir.resolve(newFileName);
 			Files.copy(photo.getInputStream(), filePath);
 
 			// メンバーのphotoフィールドに保存したファイルのパスを設定
-			member.setPhoto("/images/members/" + newFileName);
+			member.setPhoto("/uploads/members/" + newFileName);
 		} else if (member.getId() != null) {
 			//更新時、新しいファイルがアップロードされなかった場合、古いパスを維持
 			Member existingMember = findById(member.getId());
