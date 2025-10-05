@@ -29,7 +29,7 @@ public class SecurityConfig {
 				// CSSや画像などの静的リソース
 				// トップページ、部活紹介、お知らせ、部員紹介、試合結果
 				// お問い合わせフォームは誰でもアクセスできるように設定
-				.requestMatchers("/css/**", "/images/**", "/js/**").permitAll()
+				.requestMatchers("/css/**", "/images/**", "/js/**", "/uploads/**").permitAll()
 				.requestMatchers("/", "/about", "/news/**", "/members/**", "/matches/**", "/inquiry").permitAll()
 				// 上記以外のすべてのリクエストは、認証（ログイン）が必要
 				.anyRequest().authenticated())
