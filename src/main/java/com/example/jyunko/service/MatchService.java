@@ -54,7 +54,12 @@ public class MatchService {
 		// 写真がアップロードされているかチェック
 		if (!photo.isEmpty()) {
 			// アップロード先のディレクトリを指定
-			String uploadDir = "src/main/resources/static/images/matches/";
+			Path uploadDir = Paths.get("uploads/matches");
+			
+		    // 2. ディレクトリが存在しない場合は、ここで自動的に作成する
+			if (!Files.exists(uploadDir)) {
+				Files.createDirectories(uploadDir);
+			}
 
 			// ファイル名が重複しないように、ファイル名を生成
 			String originalFileName = photo.getOriginalFilename();
@@ -64,11 +69,11 @@ public class MatchService {
 			String newFileName = UUID.randomUUID().toString() + extension;
 
 			// ファイルをサーバーに保存
-			Path filePath = Paths.get(uploadDir + newFileName);
+			Path filePath = uploadDir.resolve(newFileName);
 			Files.copy(photo.getInputStream(), filePath);
 
 			// 試合のphotoフィールドに保存したファイルのパスを設定
-			match.setPhoto("/images/matches/" + newFileName);
+			match.setPhoto("/uploads/matches/" + newFileName);
 		} else if (match.getId() != null) {
 			//更新時、新しいファイルがアップロードされなかった場合、古いパスを維持
 			Match existingMatch = findById(match.getId());
