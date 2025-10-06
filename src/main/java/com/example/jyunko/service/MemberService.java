@@ -21,7 +21,7 @@ public class MemberService {
 
 	//全件取得
 	public List<Member> findAll() {
-		return memberRepository.findByOrderByGradeDesc();
+		return memberRepository.findByOrderByGradeDescIdAsc();
 	}
 
 	//ID検索
