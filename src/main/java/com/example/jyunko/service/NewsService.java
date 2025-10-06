@@ -48,7 +48,13 @@ public class NewsService {
 
 		if (!photo.isEmpty()) {
 			// アップロード先のディレクトリ
-			String uploadDir = "src/main/resources/static/images/news/";
+			Path uploadDir = Paths.get("uploads/news");
+			
+		    // 2. ディレクトリが存在しない場合は、ここで自動的に作成する
+			if (!Files.exists(uploadDir)) {
+				Files.createDirectories(uploadDir);
+			}
+			
 			// 元のファイル名を取得
 			String originalFileName = photo.getOriginalFilename();
 			// 拡張子を取得
@@ -57,11 +63,11 @@ public class NewsService {
 			String newFileName = UUID.randomUUID().toString() + extention;
 
 			// サーバにファイルを保存
-			Path filePath = Paths.get(uploadDir + newFileName);
+			Path filePath = uploadDir.resolve(newFileName);
 			Files.copy(photo.getInputStream(), filePath);
 
 			// Newsエンティティのphotoフィールドに保存したファイルのパスを設定
-			news.setPhoto("/images/news/" + newFileName);
+			news.setPhoto("/uploads/news/" + newFileName);
 		} else if (news.getId() != null) {
 			// 更新時に新しいファイルがアップロードされなかった場合、古いパスを維持
 			News existingNews = findById(news.getId());
