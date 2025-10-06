@@ -1,7 +1,9 @@
 package com.example.jyunko.controller;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import jakarta.validation.Valid;
 
@@ -40,6 +42,20 @@ public class MemberController {
 		List<Member> memberList = memberService.findAll();
 		//モデルにセット
 		model.addAttribute("memberList", memberList);
+		
+		//学年の選択肢をモデルにセット
+	    List<Integer> existingGrades = memberList.stream()
+	    		//学年を抽出
+	    		.map(Member::getGrade)
+	    		//重複を排除
+	    		.distinct()
+	    		//降順にソート
+	    		.sorted(Comparator.reverseOrder())
+	    		//リストに変換
+	    		.collect(Collectors.toList());
+
+	    model.addAttribute("grades", existingGrades);
+		
 		//部員一覧画面を表示
 		return "members";
 	}

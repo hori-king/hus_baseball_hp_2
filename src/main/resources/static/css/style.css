@@ -4,12 +4,16 @@ html, body {
 }
 
 body{
-	padding-top: 50px;
+	padding-top: 80px;
 }
 
 main{
 	min-height: calc(100vh - 160px);
-	margin-bottom: 160px;
+	margin-bottom: 100px;
+}
+
+.index , .about_text{
+	color: white;
 }
 
 h1{
@@ -31,9 +35,23 @@ h1{
 }
 
 .introduction{
-	background-color: black;
     color: white;
     padding: 0 50px 0 50px;	
+}
+
+.introduction_img{
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+}
+
+.about{
+	background-image: linear-gradient(
+		rgba(0, 0, 0, 0.6),
+		rgba(0, 0, 0, 0.6)),
+		url(/images/introduction.jpg);
+	background-size: cover;
+	background-position: center;
+	border-radius: 20px;
 }
 
 .news{
@@ -50,6 +68,13 @@ h1{
 	object-fit: cover;
 }
 
+.grade-border{
+	border-bottom: 2px solid darkred;
+	font-family: "Rampart One", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
 .match{
 	background-color: black;
 	color: white;
@@ -61,13 +86,14 @@ h1{
 }
 
 .cta-section{
-	height: 400px;
+
 	background-image: linear-gradient(
-		 rgba(0, 0, 0, 0.6),
-		 rgba(0, 0, 0, 0.6)),
-		 url(https://placehold.jp/1000x400.png?text=問い合わせ);
-		  background-size: cover;
-		  background-position: center;
+		rgba(0, 0, 0, 0.6),
+		rgba(0, 0, 0, 0.6)),
+		url(/images/introduction.jpg);
+	background-size: cover;
+	background-position: center;
+	border-radius: 20px;
 }
 
 /*お知らせのテーブル*/
@@ -121,6 +147,7 @@ h1{
 	background-position: center;
 }
 
+/*トップボタン*/
 .back-to-top{
 	color: white;
 	background-color: darkred;
@@ -140,17 +167,22 @@ h1{
 	border-color: darkred;
 }
 
-@media screen and (min-width:600px) {
-  .introduction {
-    padding: 0 100px;
-  }
-  
-  .news{
-  	padding: 0 100px;	
-  }
+/*レスポンシブデザイン*/
+@media screen and (max-width:1100px) {
+	.index {
+		font-size: 30px;
+	}
+}
 
-  .match{
-  	padding: 0 100px;	
+@media screen and (max-width:575px) {
+	.about{
+		border-radius: 0px;
+	}
+}
+
+@media screen and (min-width:600px) {
+  .introduction, .news, .match {
+    padding: 0 100px;
   }
   
 }

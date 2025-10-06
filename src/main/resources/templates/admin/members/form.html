@@ -26,12 +26,6 @@
 					<div th:if="${#fields.hasErrors('grade')}" th:errors="*{grade}" class="text-danger small"></div>
 				</div>
 				<div class="mb-3">
-					<label for="number" class="form-label">背番号</label>
-					<input type="number" id="number" class="form-control" th:field="*{number}" required>
-					
-					<div th:if="${#fields.hasErrors('number')}" th:errors="*{number}" class="text-danger small"></div>
-				</div>
-				<div class="mb-3">
 					<label for="position" class="form-label">ポジション</label>
 					<select id="position" class="form-select" th:field="*{position}">
 						<option value="">選択してください</option>

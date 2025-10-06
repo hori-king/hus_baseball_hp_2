@@ -8,14 +8,14 @@
 	<div th:replace="~{fragments/header :: common_header}"></div>
 	
 	<main>
-		<section class="introduction pt-5 pb-5">
+		<section class="introduction bg-dark pt-5 pb-5">
 			<div class="text-center mb-5">
 				<!--管理者ページからログアウトした時に表示-->
 				<div th:if="${param.logout}" class="alert alert-success" role="alert">
 					ログアウトしました。
 				</div>
 				
-				<h1 class="fw-bold">北海道科学大学 準硬式野球部</h1>
+				<h1 class="index">北海道科学大学<br class="d-lg-none"> 準硬式野球部</h1>
 				<p class="fs-4 mt-3 mb-4">私たちの活動や試合結果をお届けします</p>
 
 			</div>
@@ -24,7 +24,8 @@
 				<!--部活の雰囲気のわかる写真-->
 				<div class="text-center">
 					<figure class="figure">
-						<img src="https://placehold.jp/1000x400.png?text=活動写真" class="figure-img img-fluid rounded shadow" alt="部活の活動写真">
+						<img src="images/introduction.jpg"
+							class="introduction_img figure-img img-fluid rounded shadow" alt="部活の活動写真">
 						<figcaption class="figure-caption text-center">活動写真</figcaption>
 					</figure>
 				</div>
@@ -35,12 +36,12 @@
 		<section class="news mb-5">
 			<h2 class="pt-5 mb-5">最近のお知らせ
 				<div class="border-bottom border-danger text-end">
-					<a th:href="@{/news}" class="btn btn-outline-danger mb-2">お知らせ一覧へ</a>
+					<a th:href="@{/news}" class="btn btn-outline-danger mb-2">一覧へ</a>
 				</div>
 			</h2>
 			
 			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 border-bottom border-danger mb-5">
-				<article class="col mb-5" th:each="news : ${latestNews}">
+				<article class="col pb-5" th:each="news : ${latestNews}">
 					
 					<div class="card shadow-sm card-hover h-100">
 						<a th:href="@{/news/{id}(id=${news.id})}" class="d-flex flex-column h-100 text-decoration-none text-dark">
@@ -49,7 +50,8 @@
 								<h3 class="card-title text-center" th:text="${news.title}">タイトル</h3>
 							</div>
 							<div class="card-footer">
-								<p class="card-text text-muted" th:text="${#temporals.format(news.postedDate, 'yyyy年MM月dd日')}">日付</p>
+								<p class="card-text text-muted" 
+									th:text="${#temporals.format(news.postedDate, 'yyyy年MM月dd日')}">日付</p>
 							</div>
 						</a>
 					</div>
@@ -58,19 +60,20 @@
 			</div>
 		</section>
 		
-		<section class="match">
+		<section class="match pb-5">
 			<h2 class="pt-5 mb-5">最近の試合結果
 				<div class="border-bottom border-danger text-end">
-					<a th:href="@{/matches}" class="btn btn-outline-danger mb-2">試合結果一覧へ</a>
+					<a th:href="@{/matches}" class="btn btn-outline-danger mb-2">一覧へ</a>
 				</div>
 			</h2>
 			
-			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 border-bottom border-danger mb-5">
-				<article class="col mb-5" th:each="match : ${latestMatches}">
+			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 border-bottom border-danger">
+				<article class="col pb-5" th:each="match : ${latestMatches}">
 					
 					<div class="card shadow-sm card-hover h-100">
 						<a th:href="@{/matches/{id}(id=${match.id})}" class="text-decoration-none text-dark">
-							<img th:if="@{match.photo}" th:src="@{${match.photo}}" class="match_img card-img-top" alt="試合写真">
+							<img th:if="@{match.photo}" th:src="@{${match.photo}}"
+								class="match_img card-img-top" alt="試合写真">
 							<div class="card-body">
 								<h3 class="card-title text-center" th:text="'対戦相手： ' + ${match.opponent}">対戦相手</h3>
 								<div class="d-flex justify-content-center align-items-center fs-3">
@@ -91,13 +94,19 @@
 			</div>
 		</section>
 		
-		<section class="cta-section container text-white">
-			<h2 class="text-center py-5">お問い合わせフォーム</h2>
-			<p class="text-center mb-4">
-				ご質問やご意見がございましたら、以下のフォームからお気軽にお問い合わせください。
-			</p>
+		<section class="cta-section container text-white mt-5">
 			<div class="text-center">
-				<a th:href="@{/inquiry}" class="btn btn-danger btn-lg">お問い合わせ</a>
+				<h2 class="py-5">お問い合わせフォーム</h2>
+				<p class="fs-4 mb-5">
+					「練習は週に何回？」「部費はいくら？」「初心者でも大丈夫？」<br>
+					私たちの活動について、どんな些細なことでも構いません！<br><br>
+
+					新入部員やマネージャーの希望、練習の見学はもちろん、他大学様からの練習試合のお申し込みまで、どんなご連絡も大歓迎です！<br>
+					現役部員が丁寧にお答えしますので、以下のフォームからお気軽にご連絡ください！
+				</p>
+				<div class="d-grid col-8 col-sm-6 mx-auto pb-5">
+					<a th:href="@{/inquiry}" class="btn btn-danger btn-lg">お問い合わせフォームへ</a>
+				</div>
 			</div>
 					
 		</section>
