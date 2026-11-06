@@ -40,6 +40,7 @@ out/
 .env
 application-*.properties
 application.properties
+uploads/
 
 # Log files
 *.log

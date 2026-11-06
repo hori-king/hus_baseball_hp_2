@@ -1,0 +1,57 @@
+services:
+  - type: web
+    name: hus-baseball-hp
+    runtime: docker
+    plan: starter
+    region: singapore
+    healthCheckPath: /login
+    disk:
+      name: baseball-uploads
+      mountPath: /app/uploads
+      sizeGB: 1
+    envVars:
+      - key: DB_HOST
+        fromService:
+          type: pserv
+          name: hus-baseball-mysql
+          property: host
+      - key: DB_PORT
+        value: "3306"
+      - key: DB_NAME
+        value: jyunko_db
+      - key: DB_USERNAME
+        value: jyunko_user
+      - key: DB_PASSWORD
+        fromService:
+          type: pserv
+          name: hus-baseball-mysql
+          envVarKey: MYSQL_PASSWORD
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        generateValue: true
+  - type: pserv
+    name: hus-baseball-mysql
+    runtime: image
+    dockerCommand: mysqld --performance-schema=OFF --innodb-buffer-pool-size=64M
+    image:
+      url: docker.io/library/mysql:8.4
+    plan: starter
+    region: singapore
+    disk:
+      name: baseball-mysql-data
+      mountPath: /var/lib/mysql
+      sizeGB: 1
+    envVars:
+      - key: MYSQL_DATABASE
+        value: jyunko_db
+      - key: MYSQL_USER
+        value: jyunko_user
+      - key: MYSQL_PASSWORD
+        generateValue: true
+      - key: MYSQL_ROOT_PASSWORD
+        generateValue: true
+      - key: TZ
+        value: Asia/Tokyo
