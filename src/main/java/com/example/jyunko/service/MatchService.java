@@ -1,12 +1,8 @@
 package com.example.jyunko.service;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +15,9 @@ import com.example.jyunko.repository.MatchRepository;
 public class MatchService {
 	@Autowired
 	private MatchRepository matchRepository;
+
+	@Autowired
+	private PhotoStorageService photoStorage;
 
 	//全件取得
 	public List<Match> findAll() {
@@ -53,27 +52,7 @@ public class MatchService {
 	public void saveWithPhoto(Match match, MultipartFile photo) throws IOException {
 		// 写真がアップロードされているかチェック
 		if (!photo.isEmpty()) {
-			// アップロード先のディレクトリを指定
-			Path uploadDir = Paths.get("uploads/matches");
-			
-		    // 2. ディレクトリが存在しない場合は、ここで自動的に作成する
-			if (!Files.exists(uploadDir)) {
-				Files.createDirectories(uploadDir);
-			}
-
-			// ファイル名が重複しないように、ファイル名を生成
-			String originalFileName = photo.getOriginalFilename();
-			// 拡張子を取得
-			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
-			// 新しいファイル名を生成
-			String newFileName = UUID.randomUUID().toString() + extension;
-
-			// ファイルをサーバーに保存
-			Path filePath = uploadDir.resolve(newFileName);
-			Files.copy(photo.getInputStream(), filePath);
-
-			// 試合のphotoフィールドに保存したファイルのパスを設定
-			match.setPhoto("/uploads/matches/" + newFileName);
+			match.setPhoto(photoStorage.save(photo));
 		} else if (match.getId() != null) {
 			//更新時、新しいファイルがアップロードされなかった場合、古いパスを維持
 			Match existingMatch = findById(match.getId());

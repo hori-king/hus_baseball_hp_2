@@ -10,11 +10,14 @@ spring:
     url: ${SPRING_DATASOURCE_URL:jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3307}/${DB_NAME:jyunko_db}?characterEncoding=UTF-8&serverTimezone=Asia/Tokyo}
     username: ${DB_USERNAME:jyunko_user}
     password: ${DB_PASSWORD:${MYSQL_PASSWORD:}}
+    hikari:
+      maximum-pool-size: 3
+      minimum-idle: 0
   jpa:
     hibernate:
       ddl-auto: update
     open-in-view: false
   servlet:
     multipart:
-      max-file-size: 10MB
-      max-request-size: 12MB
+      max-file-size: 4MB
+      max-request-size: 5MB
